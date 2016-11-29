@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50096
 File Encoding         : 65001
 
-Date: 2016-11-22 12:37:39
+Date: 2016-11-29 09:59:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,7 +24,7 @@ CREATE TABLE `attendance` (
   `aNo` varchar(10) NOT NULL,
   `aName` varchar(20) NOT NULL,
   `aTime` datetime NOT NULL,
-  `aState` char(4) NOT NULL,
+  `aState` int(4) NOT NULL,
   `aDate` datetime NOT NULL,
   `aMonthNo` int(4) default NULL,
   PRIMARY KEY  (`aId`),
@@ -45,7 +45,7 @@ DROP TABLE IF EXISTS `department`;
 CREATE TABLE `department` (
   `dId` int(4) NOT NULL auto_increment,
   `dName` varchar(20) NOT NULL,
-  `dState` char(10) NOT NULL,
+  `dState` int(10) NOT NULL,
   `dSuperior` varchar(20) NOT NULL,
   PRIMARY KEY  (`dId`),
   KEY `dName` (`dName`)
@@ -160,7 +160,7 @@ DROP TABLE IF EXISTS `position`;
 CREATE TABLE `position` (
   `pId` int(4) NOT NULL auto_increment,
   `pName` varchar(20) NOT NULL,
-  `pState` char(10) NOT NULL,
+  `pState` int(10) NOT NULL,
   PRIMARY KEY  (`pId`),
   KEY `pName` (`pName`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
