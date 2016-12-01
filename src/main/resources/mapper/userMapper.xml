@@ -9,8 +9,8 @@
 		<result column="USER_PASSWORD" property="userPassword"
 			jdbcType="CHAR" />
 	</resultMap>
-	<!-- 查询单条记录 -->
-	<select id="selectUserById" parameterType="int" resultMap="BaseResultMap">
+	<!-- 添加薪资 -->
+	<select id="AddSal" parameterType="com.zhou.model.Salary" resultMap="BaseResultMap">
 		SELECT * FROM t_user WHERE USER_ID = #{userId}
 	</select>
 	<!-- 查询所有学生 -->
