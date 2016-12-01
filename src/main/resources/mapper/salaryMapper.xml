@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhou.dao.SalaryDao">
+	<!--设置model类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致！column和数据库对应 -->
+	<resultMap id="SalaryResultMap" type="com.zhou.model.Salary">
+		<id column="sId" property="sId" jdbcType="INTEGER" />
+		<result column="sNo" property="sNo" jdbcType="VARCHAR" />
+		<result column="sName" property="sName" jdbcType="VARCHAR" />
+		<result column="sBasic" property="sBasic" jdbcType="INTEGER" />
+		<result column="sLeaveNo" property="sLeaveNo" jdbcType="INTEGER" />
+		<result column="sOvertime" property="sOvertime" jdbcType="INTEGER" />
+		<result column="sReal" property="sReal" jdbcType="INTEGER" />
+		<result column="sDate" property="sDate" jdbcType="DATE" />
+		<result column="sBeizhu" property="sBeizhu" jdbcType="VARCHAR" />			
+	</resultMap>
+	<resultMap id="DetailedSalaryResultMap" type="com.zhou.model.Salary">
+		<id column="sId" property="sId" jdbcType="INTEGER" />
+		<result column="sNo" property="sNo" jdbcType="VARCHAR" />
+		<result column="sName" property="sName" jdbcType="VARCHAR" />
+		<result column="sBasic" property="sBasic" jdbcType="INTEGER" />
+		<result column="sLeaveNo" property="sLeaveNo" jdbcType="INTEGER" />
+		<result column="sOvertime" property="sOvertime" jdbcType="INTEGER" />
+		<result column="sReal" property="sReal" jdbcType="INTEGER" />
+		<result column="sDate" property="sDate" jdbcType="DATE" />
+		<result column="sBeizhu" property="sBeizhu" jdbcType="VARCHAR" />			
+	</resultMap>
+	
+	<!-- 查询所有学生 -->
+	<select id="queryAllUser" resultMap="SalaryResultMap">
+		SELECT * FROM t_user;
+	</select>
+	<!-- 添加薪资 -->
+	<insert id="AddSal" parameterType="com.zhou.model.Salary" >
+		insert into salary(sNo,sName,sBasic,sLeaveNo,sOvertimeNo,sReal,sDate,sBeizhu)
+        values (#{sNo},#{sName},#{sBasic},#{sLeaveNo},#{sOvertimeNo},#{sReal},#{sDate},#{sBeizhu})
+	</insert>
+	<!-- 查询薪资 -->
+	<select id="SearchSal" resultMap="BaseResultMap">
+		SELECT * FROM salary;
+	</select>
+	<!-- 得到薪资信息列表 -->
+	<select id="GetSalaryList" parameterType="String" resultMap="SalaryResultMap">
+		SELECT salary.eNo
+                      ,sName
+                      ,(case Department.dName when 1 then '/'when 2 then '人事部' when 3 then '策划部' when 4 then '后勤部' else '其他' end) as sDep
+                      ,(case position.pName when 1 then '部门经理'when 2 then '副经理' when 3 then '员工'  else '其他' end) as sPost
+                      ,sDate
+                      ,sBasic
+                      ,sReal
+                      ,sDate
+                      ,sBeizhu
+        FROM salary,position,Department,employee where salary.eNo=employee.eNo and Department.dId=employee.dId and position.pId=employee.pId and salary.eNo like #{eNo}
+	</select>
+	<!--获取一条薪资的细节-->
+	<select id="GetSalaryDetail" parameterType="String" resultMap="BaseResultMap">
+		SELECT salary.eNo
+                      ,sName
+                      ,(case Department.dName when 1 then '/'when 2 then '人事部' when 3 then '策划部' when 4 then '后勤部' else '其他' end) as sDep
+                      ,(case position.pName when 1 then '部门经理'when 2 then '副经理' when 3 then '员工'  else '其他' end) as sPost
+                      ,sDate
+                      ,sBasic
+                      ,sReal
+                      ,sDate
+                      ,sBeizhu
+        FROM salary,position,Department,employee where salary.eNo=employee.eNo and Department.dId=employee.dId and position.pId=employee.pId and salary.eNo like #{eNo}
+	</select>
+
+</mapper>
