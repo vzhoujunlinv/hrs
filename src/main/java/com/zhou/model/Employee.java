@@ -20,6 +20,13 @@ public class Employee {
     private String eTele;
     private String eMail;  
     private String eBeizhu;
+    public Integer getRole() {
+		return role;
+	}
+	public void setRole(Integer role) {
+		this.role = role;
+	}
+	private Integer role;
     
 	public Integer geteId() {
 		return eId;

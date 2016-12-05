@@ -12,8 +12,8 @@
 		<result column="USER_ROLE" property="userRole"
 			jdbcType="CHAR" />
 	</resultMap>
-	<!-- 添加薪资 -->
-	<select id="AddSal" parameterType="com.zhou.model.Salary" resultMap="BaseResultMap">
+	<!-- 查询单条记录 -->
+	<select id="selectUserById" parameterType="int" resultMap="BaseResultMap">
 		SELECT * FROM t_user WHERE USER_ID = #{userId}
 	</select>
 	<!-- 查询所有学生 -->

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import com.zhou.dao.UserDao;
 import com.zhou.exception.*;
 import com.zhou.model.User;
-import com.zhou.util.EncryptionUtil;
 
 @Service  
 public class UserServiceImpl implements UserService {

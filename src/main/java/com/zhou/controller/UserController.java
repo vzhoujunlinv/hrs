@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 public class UserController {
 
-	private static final String ACTION_BASE_URL_HEADER = "user";
+	private static final String ACTION_BASE_URL_HEADER = "/user";
 	@Autowired
 	UserDao userMapper;
 	@Autowired

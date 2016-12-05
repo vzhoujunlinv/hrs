@@ -1,10 +1,10 @@
 package com.zhou.common;
 
 public class Status {
-	public static final int MANAGER = 0;//管理员
-    public static final int BACKGROUND = 1;//后台
-    public static final int CUSTOMER_MANAGER = 2;//客户经理
-    public static final int PRACTICE_STUDENT = 3;//实习生
+	public static final int BOSS = 0;//老大
+    public static final int MANAGER = 1;//人事部经理
+    public static final int NORMAL_STAFF = 2;//群众
+    public static final int PRACTICE_STUDENT = 3;//
     public static final int TASK_NOT_PULL = 4;//任务发布但并为领取
     public static final int TASK_FINISH = 7;//任务成功完成
     public static final int TASK_NOT_FINISH = 5;//任务没有完成但在未来完成

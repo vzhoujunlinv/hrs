@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhou.dao.LoginDao">
+	<!--登录 -->
+	<resultMap id="BaseResultMap" type="com.zhou.model.Employee">
+		<id column="eId" property="eId" jdbcType="INTEGER" />
+		<result column="eNo" property="eNo" jdbcType="VARCHAR" />
+		<result column="eName" property="eName" jdbcType="VARCHAR" />
+		<result column="ePwd" property="ePwd" jdbcType="VARCHAR" />
+		<result column="eSex" property="eSex" jdbcType="INTEGER" />
+		<result column="eAddress" property="eAddress" jdbcType="VARCHAR" />
+		<result column="eDepartment" property="eDepartment" jdbcType="VARCHAR" />
+		<result column="eTitle" property="eTitle" jdbcType="VARCHAR" />
+		<result column="eRecord" property="eRecord" jdbcType="INTEGER" />
+		<result column="eIntroduction" property="eIntroduction" jdbcType="VARCHAR" />
+		<result column="eState" property="eState" jdbcType="INTEGER" />
+		<result column="eTele" property="eTele" jdbcType="VARCHAR" />
+		<result column="eMail" property="eMail" jdbcType="VARCHAR" />
+		<result column="eBeizhu" property="eBeizhu" jdbcType="VARCHAR" />
+		<result column="role" property="role" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<select id="loginEmployee" resultMap="BaseResultMap" parameterType="String">
+		SELECT * FROM employee WHERE eName = #{eName,jdbcType=VARCHAR}
+	</select>
+</mapper>
