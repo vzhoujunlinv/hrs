@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Leave {
 	private Integer lId;  
-    private String lNo;  
+    private String lNo;	  
     private String lName;
     private String lReason;
     private Date lStartTime;
@@ -87,6 +87,24 @@ public class Leave {
 	public void setlApprover(String lApprover) {
 		this.lApprover = lApprover;
 	}
-    
+	/*public Leave(String lNo,String lName,String lReason, Date lStartTime,Date lEndTime, Date lApplyTime)
+	{
+		this.lNo=lNo;
+		this.lName=lName;
+		this.lReason=lReason;
+		this.lStartTime=lStartTime;
+		this.lEndTime=lEndTime;
+		this.lApplyTime=lApplyTime;
+	}
+	public Leave(Date lApproveTime,Integer lApproveState,String lApproveAdvice,Integer lApprovePass,String lApprover)
+	{
+		this.lApproveTime=lApproveTime;
+		this.lApproveState=lApproveState;
+		this.lApproveAdvice=lApproveAdvice;
+		this.lApprovePass=lApprovePass;
+		this.lApprover=lApprover;
+	}*/
+		
+	
     
 }
