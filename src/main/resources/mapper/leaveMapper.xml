@@ -17,11 +17,11 @@
 		<result column="lApprover" property="lApprover" jdbcType="VARCHAR" />
 	</resultMap>
 	<!-- 查询请假审核状态-->
-	<select id="selectLeaveState" parameterType="String" resultMap="sLSResultMap">
+	<select id="selectLeaveState" parameterType="String" resultMap="LeaveResultMap">
 		SELECT * FROM leave WHERE lNo = #{lNo}
 	</select>
 	<!-- 请假核实 -->
-	<select id="selectLeaveCheck" resultMap="sLCResultMap">
+	<select id="selectLeaveCheck" resultMap="LeaveResultMap">
 		SELECT * FROM leave 
 	</select>
 	<!-- 请假申请 -->
