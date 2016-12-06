@@ -12,7 +12,7 @@ import java.util.List;
 
 @Controller
 public class EmployeeController {
-	private static final String ACTION_BASE_URL_HEADER = "leave";
+	private static final String ACTION_BASE_URL_HEADER = "employee";
 	@Autowired
 	EmployeeDao employeeMapper;
 	
