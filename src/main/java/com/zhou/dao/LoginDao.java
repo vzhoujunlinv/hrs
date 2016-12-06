@@ -10,4 +10,6 @@ public interface LoginDao {
 	 * 登录
 	 */
 	Employee loginEmployee(String eName);
+
+	Employee showOneEmp(int id);
 }

@@ -7,58 +7,68 @@ HRS.rankNumber = sessionStorage.rankNumber;//等级数字
 HRS.loginName =sessionStorage.loginName;
 HRS.password =sessionStorage.password;
 
+console.log(HRS.loginName);
+console.log(window.location.pathname);
 //权限管理，当未登录时，跳转到登陆界面
-// if(SMS.loginName == null && $(".login-form").length == 0){
-//     location.href = "login.html";
-// }
-// $(document).on("mouseenter",function(){
-//     var height = $(".main-content").height()-188;
-//     $(".first-nav>li:eq(2)").height(height).css("border-bottom","solid 1px #DDD");
-// });
+if(HRS.loginName == null && window.location.pathname != "/hrs/login.html"){
+    location.href = "login.html";
+}
+
 //登录后的标题栏显示
-//$(".user-identity").html(SMS.userRank);
-//$(".user-name").html(SMS.loginName+"<span>|</span><a href='javascript:;'>退出</a>");
+$(".userName").html(HRS.loginName);
+$(".userRank").html(HRS.userRank);
 
 
 
 //退出登录
-// $(".user-name a").click(function() {
-//     $.ajax({
-//         url: "/sms/staff/showOneStaff.do?id=" + SMS.userId,
-//         type: "POST",
-//         dataType: "json",
-//         contentType: "application/json",
-//         success: function (userdata) {
-//             if (userdata.status == 12) {
-//                 var message = eval(userdata.body);
-//                 var loginoutData = {
-//                     id: message.id,
-//                     userName: message.name,
-//                     loginName: message.loginName,
-//                     password: message.password,
-//                     weixinNumber: message.weixinNumber,
-//                     rank: message.rank,
-//                     jobNumber: message.jobNumber
-//                 }
-//                 $.ajax({
-//                     url: "/sms/staff/logout.do",
-//                     type: "POST",
-//                     dataType: "json",
-//                     contentType: "application/json",
-//                     data: JSON.stringify(loginoutData),
-//                     success: function (data) {
-//                         if (data.status == 12) {
-//                             alert("退出登录！")
-//                             location.href = "login.html";
-//                             //清除本地储存
-//                             sessionStorage.clear();
-//                         }
-//                     }
-//                 })
-//             }
-//         }
-//     })
-// })
+$(".logoutBtn").click(function() {
+    $.ajax({
+        url: "/hrs/employee/showOneEmp.do?id=" + HRS.userId,
+        type: "POST",
+        dataType: "json",
+        contentType: "application/json",
+        success: function (userdata) {
+            if (userdata.status == 12) {
+                var message = eval(userdata.body);
+                var loginoutData = {
+                    eId: message.eId,
+                    eNo: message.eNo,
+                    ePwd: message.ePwd,
+                    eName: message.eName,
+                    eSex: message.eSex,
+                    eAddress: message.eAddress,
+                    eNativeplace: message.eNativeplace,
+                    eNation: message.eNation,
+                    eDepartment: message.eDepartment,
+                    eTitle: message.eTitle,
+                    eRecord: message.eRecord,
+                    eJointime: message.eJointime,
+                    eIntroduction: message.eIntroduction,
+                    eState: message.eState,
+                    eTele: message.eTele,
+                    eMail: message.eMail,
+                    eBeizhu: message.eBeizhu,
+                    role: message.role
+                }
+                $.ajax({
+                    url: "/hrs/employee/logout.do",
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json",
+                    data: JSON.stringify(loginoutData),
+                    success: function (data) {
+                        if (data.status == 12) {
+                            alert("退出登录！")
+                            location.href = "login.html";
+                            //清除本地储存
+                            sessionStorage.clear();
+                        }
+                    }
+                })
+            }
+        }
+    })
+})
 
 
 
