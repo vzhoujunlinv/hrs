@@ -4,7 +4,8 @@ public class User {
 
     private Integer userId;  
     private String userName;  
-    private String userPassword;  
+    private String userPassword; 
+    private Integer userRole;
 
     public Integer getUserId() {  
         return userId;  
@@ -28,6 +29,16 @@ public class User {
 
     public void setUserPassword(String userPassword) {  
         this.userPassword = userPassword;  
-    }  
+    }
+
+	public Integer getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(Integer userRole) {
+		this.userRole = userRole;
+	}
+
+	
 
 }

@@ -13,4 +13,8 @@ public interface UserDao {
     public User selectUserById(Integer userId);  
     
     List<User> queryAllUser();
+    
+    User loginUser(String userName);
+    
+    int isStaffExists(User user);
 }
