@@ -7,6 +7,8 @@ public class SalaryDetail {
 	private Integer ono;
 	private Integer minus;
 	private Integer plus;
+	private Leave leave;
+	private Overtime overtime;
 	
 	public String geteNo() {
 		return eNo;
@@ -37,6 +39,18 @@ public class SalaryDetail {
 	}
 	public void setPlus(Integer plus) {
 		this.plus = plus;
+	}
+	public Leave getLeave() {
+		return leave;
+	}
+	public void setLeave(Leave leave) {
+		this.leave = leave;
+	}
+	public Overtime getOvertime() {
+		return overtime;
+	}
+	public void setOvertime(Overtime overtime) {
+		this.overtime = overtime;
 	}
 
 }

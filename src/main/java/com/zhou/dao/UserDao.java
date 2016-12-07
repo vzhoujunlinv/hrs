@@ -14,7 +14,6 @@ public interface UserDao {
     
     List<User> queryAllUser();
     
-    User loginUser(String userName);
     
-    int isStaffExists(User user);
+    
 }
