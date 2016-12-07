@@ -13,7 +13,9 @@ import com.zhou.service.SalaryService;
 
 @Controller  
 public class SalaryController {
-private static final String ACTION_BASE_URL_HEADER = "salary";
+
+	private static final String ACTION_BASE_URL_HEADER = "salary";
+
 	
 	@Autowired  
 	private SalaryService SalaryService;  
@@ -63,5 +65,6 @@ private static final String ACTION_BASE_URL_HEADER = "salary";
 		        }
 		        return new Response(status);
 		    }
+
 
 }

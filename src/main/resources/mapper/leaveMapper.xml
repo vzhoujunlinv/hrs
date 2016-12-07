@@ -25,12 +25,12 @@
 		SELECT * FROM leave 
 	</select>
 	<!-- 请假申请 -->
-	<insert id="saveLeaveApply" parameterType="com.zhou.model.Leave">
+	<insert id="saveLeaveApply" parameterType="Leave">
 		insert into leave(lNo,lName,lStartTime,lEndTime,lReason,lApplyTime) 
 			values(#{lNo},#{lName},#{lStartTime},#{lEndTime},#{lReason},#{lApplyTime})  
 	</insert>
 	<!-- 请假审批 -->
-	<insert id="saveLeaveApprove" parameterType="com.zhou.model.Leave">
+	<insert id="saveLeaveApprove" parameterType="Leave">
 		insert into leave(lApproveTime,lApprovePass,lApproveAdvice,lApprover) 
 			values(#{lApproveTime},#{lApprovePass},#{lApproveAdvice},#{lApprover})  
 	</insert>

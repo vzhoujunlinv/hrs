@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User loginUser(String userName, String password) throws NotExistException, PasswordNotMatchException {
-        User user = userDao.loginUser(userName);
+        User user =  userDao.loginUser(userName);
         if(user == null){
             throw new NotExistException("user:"+userName+" not exists");
         }else{
