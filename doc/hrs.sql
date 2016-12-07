@@ -68,6 +68,7 @@ CREATE TABLE `employee` (
   `ePwd` varchar(20) NOT NULL,
   `eName` varchar(20) NOT NULL,
   `eSex` int(4) NOT NULL,
+  `sBasicSalary` int(5) NOT NULL,
   `eAddress` varchar(30) default NULL,
   `eDepartment` varchar(20) NOT NULL,
   `eTitle` varchar(20) NOT NULL,
@@ -93,8 +94,8 @@ CREATE TABLE `employee` (
 -- ----------------------------
 -- Records of employee
 -- ----------------------------
-INSERT INTO `employee` VALUES ('1', '2014030', '123', 'BigZhou', '0', 'Chengdu', 'Leader', 'Cleaner', '3', '2014-09-01 20:09:33', 'beautiful,smart,strong the most', '1', '18588888888', '1234@qq.com', null, '1');
-INSERT INTO `employee` VALUES ('2', '2014029', '123', 'TanYao', '0', 'Chengdu', 'Hr', 'Dean', '3', '2016-11-02 20:14:34', 'fashion', '1', '17788888888', '4321@qq.com', 'hehe', '1');
+INSERT INTO `employee` VALUES ('1', '2014030', '123', 'BigZhou', '0','10000', 'Chengdu', 'Leader', 'Cleaner', '3', '2014-09-01 20:09:33', 'beautiful,smart,strong the most', '1', '18588888888', '1234@qq.com', null, '1');
+INSERT INTO `employee` VALUES ('2', '2014029', '123', 'TanYao', '0', '1000','Chengdu', 'Hr', 'Dean', '3', '2016-11-02 20:14:34', 'fashion', '1', '17788888888', '4321@qq.com', 'hehe', '1');
 
 -- ----------------------------
 -- Table structure for `leave`
