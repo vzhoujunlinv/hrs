@@ -12,58 +12,82 @@
 		<result column="sOvertime" property="sOvertime" jdbcType="INTEGER" />
 		<result column="sReal" property="sReal" jdbcType="INTEGER" />
 		<result column="sDate" property="sDate" jdbcType="DATE" />
-		<result column="sBeizhu" property="sBeizhu" jdbcType="VARCHAR" />			
+		<result column="sBeizhu" property="sBeizhu" jdbcType="VARCHAR" />	
+		<association property="employee" javaType="com.zhou.model.Employee" resultMap="EmployeeResultMap" />
 	</resultMap>
-	<resultMap id="DetailedSalaryResultMap" type="com.zhou.model.Salary">
-		<id column="sId" property="sId" jdbcType="INTEGER" />
-		<result column="sNo" property="sNo" jdbcType="VARCHAR" />
-		<result column="sName" property="sName" jdbcType="VARCHAR" />
-		<result column="sBasic" property="sBasic" jdbcType="INTEGER" />
-		<result column="sLeaveNo" property="sLeaveNo" jdbcType="INTEGER" />
-		<result column="sOvertime" property="sOvertime" jdbcType="INTEGER" />
-		<result column="sReal" property="sReal" jdbcType="INTEGER" />
-		<result column="sDate" property="sDate" jdbcType="DATE" />
-		<result column="sBeizhu" property="sBeizhu" jdbcType="VARCHAR" />			
+	<resultMap id="EmployeeResultMap" type="com.zhou.model.Employee" >
+		<id column="eId" property="eId" jdbcType="INTEGER" />
+		<result column="eNo" property="eNo" jdbcType="VARCHAR" />
+		<result column="eDepartment" property="eDepartment" jdbcType="INTEGER" />
+		<result column="eTitle" property="eTitle" jdbcType="INTEGER" />		
 	</resultMap>
 	
-	<!-- 查询所有学生 -->
-	<select id="queryAllUser" resultMap="SalaryResultMap">
-		SELECT * FROM t_user;
-	</select>
+	<resultMap id="LeaveResultMap" type="com.zhou.model.Leave">
+		<id column="lId" property="lId" jdbcType="INTEGER" />
+		<result column="lNo" property="lNo" jdbcType="VARCHAR" />	
+	</resultMap>
+	
+	<resultMap id="OvertimeResultMap" type="com.zhou.model.Overtime">
+		<id column="oId" property="oId" jdbcType="INTEGER" />
+		<result column="oNo" property="oNo" jdbcType="VARCHAR" />	
+	</resultMap>	
+	
+	<resultMap id="DetailedSalaryResultMap" type="com.zhou.model.SalaryDetail">
+		<id column="eNo" property="eNo" jdbcType="VARCHAR" />
+		<result column="lno" property="lno" jdbcType="INTEGER" />
+		<result column="ono" property="ono" jdbcType="INTEGER" />
+		<result column="minus" property="minus" jdbcType="INTEGER" />
+		<result column="plus" property="plus" jdbcType="INTEGER" />
+		<association property="leave" javaType="com.zhou.model.Leave" resultMap="LeaveResultMap" />	
+		<association property="overtime" javaType="com.zhou.model.Overtime" resultMap="OvertimeResultMap" />		
+	</resultMap>
+	
+	
 	<!-- 添加薪资 -->
 	<insert id="AddSal" parameterType="com.zhou.model.Salary" >
 		insert into salary(sNo,sName,sBasic,sLeaveNo,sOvertimeNo,sReal,sDate,sBeizhu)
         values (#{sNo},#{sName},#{sBasic},#{sLeaveNo},#{sOvertimeNo},#{sReal},#{sDate},#{sBeizhu})
 	</insert>
+
+	<!-- 计算薪资 -->
+	<select id="ComputeSal" parameterType="Integer" resultMap="SalaryResultMap">
+		SELECT employee.eNo as sNo,employee.eName as sName,employee.sBasicSalary as sBasic,count(distinct l.lId) as sLeaveNo ,count(distinct overtime.oId) as sOvertimeNo ,employee.sBasicSalary+(count(distinct overtime.oId)-count(distinct l.lId))*100 as sReal,now() as sDate 
+		FROM  employee left join `leave` as l on l.lNo=employee.eNo left join overtime on overtime.oNo=employee.eNo 
+		where employee.eDepartment like #{eDepartment}
+		GROUP BY employee.eNo,employee.eName,employee.sBasicSalary
+	</select>
+	
 	<!-- 查询薪资 -->
-	<select id="SearchSal" resultMap="BaseResultMap">
+	<select id="SearchSal" resultMap="SalaryResultMap">
 		SELECT * FROM salary;
 	</select>
+	
 	<!-- 得到薪资信息列表 -->
 	<select id="GetSalaryList" parameterType="String" resultMap="SalaryResultMap">
-		SELECT salary.eNo
-                      ,sName
-                      ,(case Department.dName when 1 then '/'when 2 then '人事部' when 3 then '策划部' when 4 then '后勤部' else '其他' end) as sDep
-                      ,(case position.pName when 1 then '部门经理'when 2 then '副经理' when 3 then '员工'  else '其他' end) as sPost
+		SELECT salary.sNo
+                      ,salary.sName
+                      ,employee.eDepartment
+                      ,employee.eTitle
                       ,sDate
                       ,sBasic
                       ,sReal
                       ,sDate
                       ,sBeizhu
-        FROM salary,position,Department,employee where salary.eNo=employee.eNo and Department.dId=employee.dId and position.pId=employee.pId and salary.eNo like #{eNo}
+        FROM salary join employee on salary.sNo=employee.eNo 
+        where salary.sNo like #{eNo} and employee.eno like #{eNo}
 	</select>
+	
 	<!--获取一条薪资的细节-->
-	<select id="GetSalaryDetail" parameterType="String" resultMap="BaseResultMap">
-		SELECT salary.eNo
-                      ,sName
-                      ,(case Department.dName when 1 then '/'when 2 then '人事部' when 3 then '策划部' when 4 then '后勤部' else '其他' end) as sDep
-                      ,(case position.pName when 1 then '部门经理'when 2 then '副经理' when 3 then '员工'  else '其他' end) as sPost
-                      ,sDate
-                      ,sBasic
-                      ,sReal
-                      ,sDate
-                      ,sBeizhu
-        FROM salary,position,Department,employee where salary.eNo=employee.eNo and Department.dId=employee.dId and position.pId=employee.pId and salary.eNo like #{eNo}
+	<select id="GetSalaryDetail" parameterType="String" resultMap="DetailedSalaryResultMap">
+		SELECT employee.eNo,
+		count(distinct l.lId) as lno,
+		count(distinct overtime.oId) as ono,
+		count(distinct l.lId)*100 as minus,
+		count(distinct overtime.oId)*100 as plus 
+		FROM  employee left outer join overtime on overtime.oNo=employee.eNo left outer join `leave` as l on employee.eNo=l.lNo 
+        where employee.eNo=#{eNo} 
+		GROUP BY employee.eNo
 	</select>
+
 
 </mapper>

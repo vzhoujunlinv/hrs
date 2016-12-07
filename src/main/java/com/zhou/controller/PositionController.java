@@ -39,7 +39,7 @@ public class PositionController {
 	 */
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/AddPos.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Object LeaveApply(HttpServletRequest request,Position position) 
+	public Object savePos(HttpServletRequest request,Position position) 
 	{
 		int status = Status.ACTION_SUCCESS;
 		positionMapper.savePos(position);
@@ -53,7 +53,7 @@ public class PositionController {
 	 */
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/updatePos.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Object LeaveApply(HttpServletRequest request,Position position) 
+	public Object updatePos(HttpServletRequest request,Position position) 
 	{
 		int status = Status.ACTION_SUCCESS;
 		positionMapper.updatePos(position);

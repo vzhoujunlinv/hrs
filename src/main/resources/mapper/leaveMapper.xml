@@ -7,13 +7,13 @@
 		<id column="lNo" property="lNo" jdbcType="VARCHAR" />
 		<result column="lName" property="lName" jdbcType="VARCHAR" />
 		<result column="lReason" property="lReason" jdbcType="VARCHAR" />
-		<result column="lStartTime" property="lStartTime" jdbcType="DATETIME" />
-		<result column="lEndTime" property="lEndTime" jdbcType="DATETIME" />
-		<result column="lApplyTime" property="lApplyTime" jdbcType="DATETIME" />
-		<result column="lApproveState" property="lApproveState" jdbcType="INT" />
-		<result column="lApproveTime" property="lApproveTime" jdbcType="DATETIME" />
-		<result column="lApprovePass" property="lApprovePass" jdbcType="INT" />
-		<result column="lApproveAdvice" property="lApproveAdvice" jdbcType="INT" />
+		<result column="lStartTime" property="lStartTime" jdbcType="DATE" />
+		<result column="lEndTime" property="lEndTime" jdbcType="DATE" />
+		<result column="lApplyTime" property="lApplyTime" jdbcType="DATE" />
+		<result column="lApproveState" property="lApproveState" jdbcType="INTEGER" />
+		<result column="lApproveTime" property="lApproveTime" jdbcType="DATE" />
+		<result column="lApprovePass" property="lApprovePass" jdbcType="INTEGER" />
+		<result column="lApproveAdvice" property="lApproveAdvice" jdbcType="INTEGER" />
 		<result column="lApprover" property="lApprover" jdbcType="VARCHAR" />
 	</resultMap>
 	<!-- 查询请假审核状态-->
@@ -25,13 +25,14 @@
 		SELECT * FROM leave 
 	</select>
 	<!-- 请假申请 -->
-	<insert id="saveLeaveApply" parameterType="Leave">  
-        insert into leave(lNo,lName,lStartTime,lEndTime,lReason,lApplyTime) 
+	<insert id="saveLeaveApply" parameterType="com.zhou.model.Leave">
+		insert into leave(lNo,lName,lStartTime,lEndTime,lReason,lApplyTime) 
 			values(#{lNo},#{lName},#{lStartTime},#{lEndTime},#{lReason},#{lApplyTime})  
-    </insert> 
+	</insert>
 	<!-- 请假审批 -->
-	<insert id="saveLeaveApprove" parameterType="Leave">  
-        insert into leave(lApproveTime,lApprovePass,lApproveAdvice,lApprover) 
+	<insert id="saveLeaveApprove" parameterType="com.zhou.model.Leave">
+		insert into leave(lApproveTime,lApprovePass,lApproveAdvice,lApprover) 
 			values(#{lApproveTime},#{lApprovePass},#{lApproveAdvice},#{lApprover})  
-    </insert>
+	</insert>
+	
 </mapper>

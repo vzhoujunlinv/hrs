@@ -54,7 +54,7 @@ public class EmployeeController {
 	 */
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/AddEmp.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Object LeaveApply(HttpServletRequest request,Employee employee) 
+	public Object saveEmp(HttpServletRequest request,Employee employee) 
 	{
 		int status = Status.ACTION_SUCCESS;
 		employeeMapper.saveEmp(employee);
@@ -68,7 +68,7 @@ public class EmployeeController {
 	 */
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/updateEmp.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Object LeaveApply(HttpServletRequest request,Employee employee) 
+	public Object updateEmp(HttpServletRequest request,Employee employee) 
 	{
 		int status = Status.ACTION_SUCCESS;
 		employeeMapper.updateEmp(employee);
@@ -82,7 +82,7 @@ public class EmployeeController {
 	 */
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/updatePwd.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Object LeaveApply(HttpServletRequest request,Employee employee) 
+	public Object updatePwd(HttpServletRequest request,Employee employee) 
 	{
 		int status = Status.ACTION_SUCCESS;
 		employeeMapper.updatePwd(employee.getePwd(), employee.geteNo());
@@ -96,7 +96,7 @@ public class EmployeeController {
 	 */
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/deleteEmp.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Object LeaveApply(HttpServletRequest request,Employee employee) 
+	public Object deleteEmp(HttpServletRequest request,Employee employee) 
 	{
 		int status = Status.ACTION_SUCCESS;
 		employeeMapper.deleteEmp( employee.geteNo());

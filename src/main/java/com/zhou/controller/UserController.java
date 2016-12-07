@@ -35,9 +35,8 @@ public class UserController {
 	public Object findAll(HttpServletRequest request) {
 		int status = Status.ACTION_SUCCESS;
 		
-		//List<User> students;
-		//students = userMapper.queryAllUser();
-		saveLeaveApprove(Leave leave)
+		List<User> students;
+		students = userMapper.queryAllUser();
 		return new Response(status, students);
 	}
 	

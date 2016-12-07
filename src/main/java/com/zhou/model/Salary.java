@@ -1,11 +1,13 @@
 package com.zhou.model;
 
 import java.util.Date;
+import com.zhou.model.Employee;
 
 public class Salary {
 	private Integer sId;  
-    private Integer sNo;  
+    private String sNo;  
     private String sName;
+    private Employee employee;
     private Integer sBasic;
     private Integer sLeaveNo;
     private Integer sOvertimeNo;
@@ -19,10 +21,10 @@ public class Salary {
 	public void setsId(Integer sId) {
 		this.sId = sId;
 	}
-	public Integer getsNo() {
+	public String getsNo() {
 		return sNo;
 	}
-	public void setsNo(Integer sNo) {
+	public void setsNo(String sNo) {
 		this.sNo = sNo;
 	}
 	public String getsName() {
@@ -66,6 +68,12 @@ public class Salary {
 	}
 	public void setsBeizhu(String sBeizhu) {
 		this.sBeizhu = sBeizhu;
+	}
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
     
     
