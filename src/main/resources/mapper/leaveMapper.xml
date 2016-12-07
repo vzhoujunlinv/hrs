@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhou.dao.LeaveDao">
+	<!--设置model类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致！column和数据库对应 -->
+	<resultMap id="LeaveResultMap" type="com.zhou.model.Leave">
+		<id column="lNo" property="lNo" jdbcType="VARCHAR" />
+		<result column="lName" property="lName" jdbcType="VARCHAR" />
+		<result column="lReason" property="lReason" jdbcType="VARCHAR" />
+		<result column="lStartTime" property="lStartTime" jdbcType="DATETIME" />
+		<result column="lEndTime" property="lEndTime" jdbcType="DATETIME" />
+		<result column="lApplyTime" property="lApplyTime" jdbcType="DATETIME" />
+		<result column="lApproveState" property="lApproveState" jdbcType="INT" />
+		<result column="lApproveTime" property="lApproveTime" jdbcType="DATETIME" />
+		<result column="lApprovePass" property="lApprovePass" jdbcType="INT" />
+		<result column="lApproveAdvice" property="lApproveAdvice" jdbcType="INT" />
+		<result column="lApprover" property="lApprover" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 查询请假审核状态-->
+	<select id="selectLeaveState" parameterType="String" resultMap="LeaveResultMap">
+		SELECT * FROM leave WHERE lNo = #{lNo}
+	</select>
+	<!-- 请假核实 -->
+	<select id="selectLeaveCheck" resultMap="LeaveResultMap">
+		SELECT * FROM leave 
+	</select>
+	<!-- 请假申请 -->
+	<insert id="saveLeaveApply" parameterType="Leave">  
+        insert into leave(lNo,lName,lStartTime,lEndTime,lReason,lApplyTime) 
+			values(#{lNo},#{lName},#{lStartTime},#{lEndTime},#{lReason},#{lApplyTime})  
+    </insert> 
+	<!-- 请假审批 -->
+	<insert id="saveLeaveApprove" parameterType="Leave">  
+        insert into leave(lApproveTime,lApprovePass,lApproveAdvice,lApprover) 
+			values(#{lApproveTime},#{lApprovePass},#{lApproveAdvice},#{lApprover})  
+    </insert>
+</mapper>

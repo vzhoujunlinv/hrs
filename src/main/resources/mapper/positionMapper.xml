@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhou.dao.PositionDao">
+	<!--设置model类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致！column和数据库对应 -->
+	<resultMap id="PositionResultMap" type="com.zhou.model.Position">
+		<id column="pName" property="pName" jdbcType="VARCHAR" />
+		<result column="pState" property="pState" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 查询所有员工 -->
+	<select id="findAllPos" resultMap="PositionResultMap">
+		SELECT * FROM position 
+	</select>
+	<!-- 添加部门 -->
+	<insert id="savePos" parameterType="Position">  
+       insert into employee(pName,pState) values (#{pName},#{pState})  
+    </insert>
+	<!-- 修改部门 -->
+	<update id="updatePos" parameterType="Position">    
+        update employee set pState=#{pState} where pName=#{pName}    
+    </update> 
+</mapper>

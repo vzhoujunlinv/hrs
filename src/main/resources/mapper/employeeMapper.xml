@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhou.dao.EmployeeDao">
+	<!--设置model类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致！column和数据库对应 -->
+	<resultMap id="EmployeeResultMap" type="com.zhou.model.Employee">
+		<id column="eNo" property="eNo" jdbcType="VARCHAR" />
+		<result column="ePwd" property="ePwd" jdbcType="VARCHAR" />
+		<result column="eName" property="eName" jdbcType="VARCHAR" />
+		<result column="eSex" property="eSex" jdbcType="INT" />
+		<result column="eDepartment" property="eDepartment" jdbcType="VARCHAR" />
+		<result column="eTitle" property="eTitle" jdbcType="VARCHAR" />
+		<result column="eTele" property="eTele" jdbcType="VARCHAR" />
+		<result column="eMail" property="eMail" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 查询单个员工-->
+	<select id="selectLeaveState" parameterType="String" resultMap="LeaveResultMap">
+		SELECT * FROM employee WHERE eNo = #{eNo}
+	</select>
+	<!-- 查询所有员工 -->
+	<select id="findAllEmp" resultMap="EmployeeResultMap">
+		SELECT * FROM employee 
+	</select>
+	<!-- 添加员工 -->
+	<insert id="saveEmp" parameterType="Employee">  
+       insert into employee(eNo,eName,eSex,eDepartment,eTitle,eTele,eMail) 
+			values(#{eNo},#{eName},#{eSex},#{eDepartment},#{eTitle},#{eTele},#{eMail})  
+    </insert>
+	<!-- 修改员工资料 -->
+	<update id="updateEmp" parameterType="Employee">    
+        update employee set eDepartment=#{eDepartment},eTitle=#{eTitle},eTele=#{eTele},eMail=#{eMail} where eNo=#{eNo}    
+    </update> 
+	<!-- 修改员工密码 -->
+	<update id="updatePwd" parameterType="String">    
+        update employee set ePwd=#{ePwd} where eNo=#{eNo}    
+    </update> 
+	<delete id="deleteEmp" parameterType="string">    
+        delete from employee where eNo=#{eNo}    
+    </delete>
+</mapper>

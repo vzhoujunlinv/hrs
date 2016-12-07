@@ -24,4 +24,8 @@
 	<select id="loginEmployee" resultMap="BaseResultMap" parameterType="String">
 		SELECT * FROM employee WHERE eName = #{eName,jdbcType=VARCHAR}
 	</select>
+	
+	<select id="showOneEmp" resultMap="BaseResultMap" parameterType="String">
+		SELECT * FROM employee WHERE eId = #{eId,jdbcType=VARCHAR}
+	</select>
 </mapper>

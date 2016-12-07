@@ -31,4 +31,11 @@ public class LoginServiceImpl implements LoginService{
         return emp;
 	}
 
+	@Override
+	public Employee showOneEmp(int id) {
+		// TODO Auto-generated method stub
+		return loginDao.showOneEmp(id);
+	}
+
+	
 }

@@ -11,4 +11,6 @@ public interface LoginService {
 	
 	@Transactional(isolation = Isolation.READ_COMMITTED,rollbackFor = Throwable.class)
     Employee loginEmployee(String eName, String ePwd) throws NotExistException, PasswordNotMatchException;
+
+	Employee showOneEmp(int id);
 }
