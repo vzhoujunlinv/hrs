@@ -22,19 +22,19 @@
 		SELECT * FROM employee 
 	</select>
 	<!-- 添加员工 -->
-	<insert id="saveEmp" parameterType="Employee">  
-       insert into employee(eNo,eName,eSex,eDepartment,eTitle,eTele,eMail) 
-			values(#{eNo},#{eName},#{eSex},#{eDepartment},#{eTitle},#{eTele},#{eMail})  
-    </insert>
+	<insert id="saveEmp" parameterType="com.zhou.model.Employee" >
+		insert into employee(eNo,eName,eSex,eDepartment,eTitle,eTele,eMail) 
+			values (#{eNo},#{eName},#{eSex},#{eDepartment},#{eTitle},#{eTele},#{eMail})  
+	</insert>
 	<!-- 修改员工资料 -->
-	<update id="updateEmp" parameterType="Employee">    
-        update employee set eDepartment=#{eDepartment},eTitle=#{eTitle},eTele=#{eTele},eMail=#{eMail} where eNo=#{eNo}    
-    </update> 
+	<update id="updateEmp" parameterType="Employee">
+		update employee set eDepartment=#{eDepartment},eTitle=#{eTitle},eTele=#{eTele},eMail=#{eMail} where eNo=#{eNo}
+	</update>
 	<!-- 修改员工密码 -->
-	<update id="updatePwd" parameterType="String">    
-        update employee set ePwd=#{ePwd} where eNo=#{eNo}    
-    </update> 
-	<delete id="deleteEmp" parameterType="string">    
-        delete from employee where eNo=#{eNo}    
-    </delete>
+	<update id="updatePwd" parameterType="String">
+		 update employee set ePwd=#{ePwd} where eNo=#{eNo}
+	</update>
+	<delete id="deleteEmp" parameterType="String">
+	 	delete from employee where eNo=#{eNo}  
+	</delete>
 </mapper>

@@ -12,11 +12,13 @@
 		SELECT * FROM position 
 	</select>
 	<!-- 添加部门 -->
-	<insert id="savePos" parameterType="Position">  
-       insert into employee(pName,pState) values (#{pName},#{pState})  
-    </insert>
+	<insert id="savePos" parameterType="Position">
+		insert into employee(pName,pState) values (#{pName},#{pState})
+	</insert>
+
 	<!-- 修改部门 -->
-	<update id="updatePos" parameterType="Position">    
-        update employee set pState=#{pState} where pName=#{pName}    
-    </update> 
+	<update id="updatePos" parameterType="Position">
+	    update employee set pState=#{pState} where pName=#{pName} 
+	</update>
+	
 </mapper>

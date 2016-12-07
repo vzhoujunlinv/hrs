@@ -30,5 +30,6 @@ public class SalaryController {
 		students = userMapper.queryAllUser();
 
 		return new Response(status, students);
+	}
 
 }

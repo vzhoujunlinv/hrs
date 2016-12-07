@@ -1,7 +1,10 @@
 package com.zhou.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.zhou.dao.LeaveDao;
 import com.zhou.model.Leave;
 
@@ -26,5 +29,7 @@ public class LeaveServiceImpl implements LeaveService{
 	public void saveLeaveApprove(Leave leave)
 	{  
         leaveDao.saveLeaveApprove(leave);  
-    } 
+    }
+	
+
 }

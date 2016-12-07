@@ -25,13 +25,14 @@
 		SELECT * FROM leave 
 	</select>
 	<!-- 请假申请 -->
-	<insert id="saveLeaveApply" parameterType="Leave">  
-        insert into leave(lNo,lName,lStartTime,lEndTime,lReason,lApplyTime) 
+	<insert id="saveLeaveApply" parameterType="Leave">
+		insert into leave(lNo,lName,lStartTime,lEndTime,lReason,lApplyTime) 
 			values(#{lNo},#{lName},#{lStartTime},#{lEndTime},#{lReason},#{lApplyTime})  
-    </insert> 
+	</insert>
 	<!-- 请假审批 -->
-	<insert id="saveLeaveApprove" parameterType="Leave">  
-        insert into leave(lApproveTime,lApprovePass,lApproveAdvice,lApprover) 
+	<insert id="saveLeaveApprove" parameterType="Leave">
+		insert into leave(lApproveTime,lApprovePass,lApproveAdvice,lApprover) 
 			values(#{lApproveTime},#{lApprovePass},#{lApproveAdvice},#{lApprover})  
-    </insert>
+	</insert>
+	
 </mapper>
