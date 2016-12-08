@@ -20,6 +20,7 @@ public class Employee {
     private String eTele;
     private String eMail;  
     private String eBeizhu;
+    private Integer eBasicSalary;
     public Integer getRole() {
 		return role;
 	}
@@ -130,5 +131,10 @@ public class Employee {
 	public void seteBeizhu(String eBeizhu) {
 		this.eBeizhu = eBeizhu;
 	}
-    
+	public Integer geteBasicSalary() {
+		return eBasicSalary;
+	}
+	public void seteBasicSalary(Integer eBasicSalary) {
+		this.eBasicSalary = eBasicSalary;
+	}
 }

@@ -28,9 +28,9 @@ public class EmployeeServiceImpl implements EmployeeService{
     {
     	employeeDao.updateEmp(employee);
     }
-    public void updatePwd(String ePwd,String eNo)
+    public void updatePwd(Employee employee)
     {
-    	employeeDao.updatePwd(ePwd,eNo);
+    	employeeDao.updatePwd(employee);
     }
     public void deleteEmp(String eNo)
     {

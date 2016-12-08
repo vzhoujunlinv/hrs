@@ -11,8 +11,7 @@ public interface LeaveDao {
      * @param none
      * @return LeaveState
      */
-    public Leave selectLeaveState(String lNo);  
-    public Leave selectLeaveCheck(String lNo);
+    public Leave selectLeaveState(String lId);  
     List<Leave> selectLeaveCheck();
     
     void saveLeaveApprove(Leave leave);

@@ -4,11 +4,14 @@ package com.zhou.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 import com.zhou.common.Response;
 import com.zhou.common.Status;
 import com.zhou.dao.*;
 import com.zhou.model.*;
+
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.List;
 
 @Controller
@@ -29,10 +32,10 @@ public class LeaveController {
 	{
 		int status = Status.ACTION_SUCCESS;
 		
-		List<Leave> students;
-		students = leaveMapper.selectLeaveCheck();
+		List<Leave> leaves;
+		leaves = leaveMapper.selectLeaveCheck();
 
-		return new Response(status, students);
+		return new Response(status, leaves);
 	}
 		/**
 		 * 查询请假审核状态
@@ -40,15 +43,14 @@ public class LeaveController {
 		 * @param lNo
 		 * @return
 		 */
-		@RequestMapping(value = ACTION_BASE_URL_HEADER + "/LeaveStatus.do", method = RequestMethod.GET)
+		@RequestMapping(value = ACTION_BASE_URL_HEADER + "/LeaveStatus.do", method = RequestMethod.POST)
 		@ResponseBody
-		public Object LeaveStatus(HttpServletRequest request,Leave leave) 
+		public Object LeaveStatus(HttpServletRequest request,@RequestParam String lId) 
 		{
 			int status = Status.ACTION_SUCCESS;
 			
-			//List<Leave> students;
-			Leave students;
-			students = leaveMapper.selectLeaveState(leave.getlNo());
+			Leave students=new Leave();
+			students = leaveMapper.selectLeaveState(lId);
 
 			return new Response(status, students);
 		}
@@ -61,15 +63,12 @@ public class LeaveController {
 		 */
 		@RequestMapping(value = ACTION_BASE_URL_HEADER + "/LeaveApply.do", method = RequestMethod.POST)
 		@ResponseBody
-		public Object LeaveApply(HttpServletRequest request,Leave leave) 
+		public Object saveLeaveApply(HttpServletRequest request,@RequestBody Leave leave) 
 		{
 			int status = Status.ACTION_SUCCESS;
-			
-			//List<Leave> students;
-			//Leave students;
-			//students = leaveMapper.selectLeaveState(leave.getlNo());
-			leaveMapper.saveLeaveApply(leave);
-			return new Response(status);
+			Leave lv=leave;
+			leaveMapper.saveLeaveApply(lv);
+			return new Response(status,lv.getlName());
 		}
 		/**
 		 * 请假审批
@@ -79,14 +78,11 @@ public class LeaveController {
 		 */
 		@RequestMapping(value = ACTION_BASE_URL_HEADER + "/LeaveApprove.do", method = RequestMethod.POST)
 		@ResponseBody
-		public Object LeaveApply(HttpServletRequest request,Leave leave) 
+		public Object LeaveApply(HttpServletRequest request,@RequestBody Leave leave) 
 		{
 			int status = Status.ACTION_SUCCESS;
-			
-			//List<Leave> students;
-			//Leave students;
-			//students = leaveMapper.selectLeaveState(leave.getlNo());
-			leaveMapper.saveLeaveApprove(leave);
-			return new Response(status);
+			Leave lv=leave;
+			leaveMapper.saveLeaveApprove(lv);
+			return new Response(status,lv.getlApproveState());
 		}
 }

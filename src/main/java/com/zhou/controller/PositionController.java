@@ -3,11 +3,14 @@ package com.zhou.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 import com.zhou.common.Response;
 import com.zhou.common.Status;
 import com.zhou.dao.*;
 import com.zhou.model.*;
+
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.List;
 
 @Controller
@@ -23,7 +26,7 @@ public class PositionController {
 	 */
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/selAllPos.do", method = RequestMethod.GET)
 	@ResponseBody
-	public Object LeaveCheck(HttpServletRequest request) 
+	public Object selAllPos(HttpServletRequest request) 
 	{
 		int status = Status.ACTION_SUCCESS;
 		
@@ -39,11 +42,12 @@ public class PositionController {
 	 */
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/AddPos.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Object LeaveApply(HttpServletRequest request,Position position) 
+	public Object savePos(HttpServletRequest request,@RequestBody Position position) 
 	{
 		int status = Status.ACTION_SUCCESS;
-		positionMapper.savePos(position);
-		return new Response(status);
+		Position pos=position;
+		positionMapper.savePos(pos);
+		return new Response(status,pos.getpName());
 	}
 	/**
 	 * 修改部门
@@ -53,10 +57,11 @@ public class PositionController {
 	 */
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/updatePos.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Object LeaveApply(HttpServletRequest request,Position position) 
+	public Object updatePos(HttpServletRequest request,@RequestBody Position position) 
 	{
 		int status = Status.ACTION_SUCCESS;
-		positionMapper.updatePos(position);
-		return new Response(status);
+		Position pos=position;
+		positionMapper.updatePos(pos);
+		return new Response(status,pos.getpState());
 	}
 }

@@ -10,5 +10,5 @@ public interface EmployeeService {
     public List<Employee> findAllEmp();
     public void updateEmp(Employee employee);
     public void deleteEmp(String eNo);
-    public void updatePwd(String ePwd,String eNo);
+    public void updatePwd(Employee employee);
 }

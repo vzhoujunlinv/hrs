@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhou.dao.DepartmentDao">
+	<!--设置model类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致！column和数据库对应 -->
+	<resultMap id="DepartmentResultMap" type="com.zhou.model.Department">
+		<id column="dName" property="dName" jdbcType="VARCHAR" />
+		<result column="dState" property="dState" jdbcType="INTEGER" />
+		<result column="dSuperior" property="dSuperior" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 查询所有部门 -->
+	<select id="findAllDep" resultMap="DepartmentResultMap">
+		SELECT * FROM department 
+	</select>
+	<!-- 添加部门-->
+	<insert id="saveDep" parameterType="com.zhou.model.Department">
+		insert into department (dName,dState,dSuperior) values (#{dName},#{dState},#{dSuperior})
+	</insert>
+
+	<!-- 修改部门 -->
+	<update id="updateDep" parameterType="com.zhou.model.Department">
+	    update department set dState=#{dState}, dSuperior=#{dSuperior} where dName=#{dName} 
+	</update>
+	
+</mapper>

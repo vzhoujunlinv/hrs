@@ -1,7 +1,10 @@
 package com.zhou.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.zhou.dao.LeaveDao;
 import com.zhou.model.Leave;
 
@@ -15,9 +18,9 @@ public class LeaveServiceImpl implements LeaveService{
 	{  
         return leaveDao.selectLeaveState(lNo);  
     } 
-	public Leave selectLeaveCheck(String lNo)
+	public List<Leave> selectLeaveCheck()
 	{  
-        return leaveDao.selectLeaveCheck(lNo);  
+        return leaveDao.selectLeaveCheck();  
     } 
 	public void saveLeaveApply(Leave leave)
 	{  
@@ -26,5 +29,7 @@ public class LeaveServiceImpl implements LeaveService{
 	public void saveLeaveApprove(Leave leave)
 	{  
         leaveDao.saveLeaveApprove(leave);  
-    } 
+    }
+	
+
 }
