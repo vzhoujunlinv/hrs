@@ -13,7 +13,10 @@ import com.zhou.service.SalaryService;
 
 @Controller  
 public class SalaryController {
-private static final String ACTION_BASE_URL_HEADER = "salary";
+
+
+	private static final String ACTION_BASE_URL_HEADER = "salary";
+
 	
 	@Autowired  
 	private SalaryService SalaryService;  
@@ -50,7 +53,21 @@ private static final String ACTION_BASE_URL_HEADER = "salary";
 	                status = Status.NO_RECORDS;
 	            }
 		        return new Response(status,salarydets);
+
 		    }		 
+
+		 
+		 @RequestMapping(value = ACTION_BASE_URL_HEADER+"/ComputeSal.do",method = RequestMethod.GET)
+		    @ResponseBody
+		    public Object ComputeSal(@RequestParam String eDepartment,HttpServletRequest request){
+		        int status = Status.ACTION_SUCCESS;
+		        Salary salaryresults;
+		        salaryresults =SalaryService.ComputeSal(eDepartment);
+		        if (salaryresults==null){
+	                status = Status.NO_RECORDS;
+	            }
+		        return new Response(status,salaryresults);
+		    }
 		 
 		   @RequestMapping(value = ACTION_BASE_URL_HEADER+"/insert.do" ,method = RequestMethod.POST)
 		    @ResponseBody

@@ -60,6 +60,7 @@ public class EmployeeController {
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/AddEmp.do", method = RequestMethod.POST)
 	@ResponseBody
 	public Object saveEmp(HttpServletRequest request,@Validated({EmployeeAddValidator.class})@RequestBody Employee employee) 
+
 	{
 		int status = Status.ACTION_SUCCESS;
 		Employee emp = employee;
@@ -75,6 +76,7 @@ public class EmployeeController {
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/updateEmp.do", method = RequestMethod.POST)
 	@ResponseBody
 	public Object updateEmp(HttpServletRequest request,@RequestBody Employee employee) 
+
 	{
 		int status = Status.ACTION_SUCCESS;
 		Employee emp = employee;
@@ -90,6 +92,7 @@ public class EmployeeController {
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/updatePwd.do", method = RequestMethod.POST)
 	@ResponseBody
 	public Object updatePwd(HttpServletRequest request,@RequestBody Employee employee) 
+
 	{
 		int status = Status.ACTION_SUCCESS;
 		Employee emp = employee;
@@ -120,6 +123,7 @@ public class EmployeeController {
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/deleteEmp.do", method = RequestMethod.POST)
 	@ResponseBody
 	public Object deleteEmp(HttpServletRequest request,@RequestBody Employee employee) 
+
 	{
 		int status = Status.ACTION_SUCCESS;
 		employeeMapper.deleteEmp( employee.geteNo());

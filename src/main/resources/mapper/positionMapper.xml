@@ -14,6 +14,7 @@
 	<!-- 添加部门 -->
 	<insert id="savePos" parameterType="com.zhou.model.Position">
 		insert into position (pName,pState) values (#{pName},#{pState})
+
 	</insert>
 
 	<!-- 修改部门 -->

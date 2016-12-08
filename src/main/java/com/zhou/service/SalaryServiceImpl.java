@@ -2,6 +2,15 @@ package com.zhou.service;
 
 import java.util.List;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.zhou.dao.SalaryDao;
+import com.zhou.model.Salary;
+import com.zhou.model.SalaryDetail;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +38,11 @@ public class SalaryServiceImpl implements SalaryService{
 		Salary salary1=SalaryDao.ComputeSal(eDepartment);
     	return SalaryDao.AddSal(salary1);
 	}
+	
+	@Override
+	public Salary ComputeSal(String eDepartment){
+		return SalaryDao.ComputeSal(eDepartment);
+	}
+
 
 }

@@ -33,5 +33,5 @@
 	<update id="saveLeaveApprove" parameterType="com.zhou.model.Leave">
 		update `leave` set lApproveTime=#{lApproveTime},lApprovePass=#{lApprovePass},lApproveState=#{lApproveState},lApproveAdvice=#{lApproveAdvice},lApprover=#{lApprover} where lId=#{lId}  
 	</update>
-	
+
 </mapper>

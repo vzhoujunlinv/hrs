@@ -64,6 +64,7 @@ public class LeaveController {
 		@RequestMapping(value = ACTION_BASE_URL_HEADER + "/LeaveApply.do", method = RequestMethod.POST)
 		@ResponseBody
 		public Object saveLeaveApply(HttpServletRequest request,@RequestBody Leave leave) 
+
 		{
 			int status = Status.ACTION_SUCCESS;
 			Leave lv=leave;

@@ -16,6 +16,7 @@
 	</resultMap>
 	<!-- 查询单个员工-->
 	<select id="selectEmpById" parameterType="String" resultMap="EmployeeResultMap">
+
 		SELECT * FROM employee WHERE eNo = #{eNo}
 	</select>
 	<!-- 查询所有员工 -->
@@ -28,6 +29,7 @@
 			values (#{eNo},#{eName},#{eSex},#{eDepartment},#{eTitle},#{eTele},#{eMail},#{ePwd},#{eState})  
 	</insert>
 	<!-- 修改员工资料 -->
+
 	<update id="updateEmp" parameterType="com.zhou.model.Employee">
 		update employee set eDepartment=#{eDepartment},eTitle=#{eTitle},eTele=#{eTele},eMail=#{eMail} where eNo=#{eNo}
 	</update>
@@ -39,6 +41,7 @@
 	<update id="updateBs" parameterType="com.zhou.model.Employee">
 		 update employee set eBasicSalary=#{eBasicSalary} where eNo=#{eNo}
 	</update>
+
 	<delete id="deleteEmp" parameterType="String">
 	 	delete from employee where eNo=#{eNo}  
 	</delete>
