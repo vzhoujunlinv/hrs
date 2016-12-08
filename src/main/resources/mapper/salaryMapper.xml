@@ -9,9 +9,9 @@
 		<result column="sName" property="sName" jdbcType="VARCHAR" />
 		<result column="sBasic" property="sBasic" jdbcType="INTEGER" />
 		<result column="sLeaveNo" property="sLeaveNo" jdbcType="INTEGER" />
-		<result column="sOvertime" property="sOvertime" jdbcType="INTEGER" />
+		<result column="sOvertimeNo" property="sOvertimeNo" jdbcType="INTEGER" />
 		<result column="sReal" property="sReal" jdbcType="INTEGER" />
-		<result column="sDate" property="sDate" jdbcType="DATE" />
+		<result column="sDate" property="sDate" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
 		<result column="sBeizhu" property="sBeizhu" jdbcType="VARCHAR" />	
 		<association property="employee" javaType="com.zhou.model.Employee" resultMap="EmployeeResultMap" />
 	</resultMap>
@@ -51,8 +51,8 @@
 
 	<!-- 计算薪资 -->
 	<select id="ComputeSal" parameterType="Integer" resultMap="SalaryResultMap">
-		SELECT employee.eNo as sNo,employee.eName as sName,employee.sBasicSalary as sBasic,count(distinct l.lId) as sLeaveNo ,count(distinct overtime.oId) as sOvertimeNo ,employee.sBasicSalary+(count(distinct overtime.oId)-count(distinct l.lId))*100 as sReal,now() as sDate 
-		FROM  employee left join `leave` as l on l.lNo=employee.eNo left join overtime on overtime.oNo=employee.eNo 
+		SELECT employee.eNo as sNo,employee.eName as sName,employee.sBasicSalary as sBasic,count(distinct l.lId) as sLeaveNo ,count(distinct o.oId) as sOvertimeNo ,employee.sBasicSalary+(count(distinct o.oId)-count(distinct l.lId))*100 as sReal,now() as sDate 
+		FROM  employee left join `leave` as l on l.lNo=employee.eNo left join overtime as o on o.oNo=employee.eNo 
 		where employee.eDepartment like #{eDepartment}
 		GROUP BY employee.eNo,employee.eName,employee.sBasicSalary
 	</select>
@@ -73,8 +73,9 @@
                       ,sReal
                       ,sDate
                       ,sBeizhu
-        FROM salary join employee on salary.sNo=employee.eNo 
-        where salary.sNo like #{eNo} and employee.eno like #{eNo}
+        FROM salary join employee on salary.sNo=employee.eNo         
+        where  employee.eNo like '%${value}%'
+
 	</select>
 	
 	<!--获取一条薪资的细节-->
@@ -85,7 +86,7 @@
 		count(distinct l.lId)*100 as minus,
 		count(distinct overtime.oId)*100 as plus 
 		FROM  employee left outer join overtime on overtime.oNo=employee.eNo left outer join `leave` as l on employee.eNo=l.lNo 
-        where employee.eNo=#{eNo} 
+        where  employee.eNo like '%${value}%'
 		GROUP BY employee.eNo
 	</select>
 

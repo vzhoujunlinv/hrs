@@ -28,7 +28,7 @@
 	</insert>
 	<!-- 修改员工资料 -->
 
-	<update id="updateEmp" parameterType="Employee">
+	<update id="updateEmp" parameterType="com.zhou.model.Employee">
 		update employee set eDepartment=#{eDepartment},eTitle=#{eTitle},eTele=#{eTele},eMail=#{eMail} where eNo=#{eNo}
 	</update>
 	<!-- 修改员工密码 -->

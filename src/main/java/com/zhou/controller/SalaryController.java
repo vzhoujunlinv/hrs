@@ -52,7 +52,19 @@ public class SalaryController {
 	                status = Status.NO_RECORDS;
 	            }
 		        return new Response(status,salarydets);
-		    }		 
+		    }
+		 
+		 @RequestMapping(value = ACTION_BASE_URL_HEADER+"/ComputeSal.do",method = RequestMethod.GET)
+		    @ResponseBody
+		    public Object ComputeSal(@RequestParam String eDepartment,HttpServletRequest request){
+		        int status = Status.ACTION_SUCCESS;
+		        Salary salaryresults;
+		        salaryresults =SalaryService.ComputeSal(eDepartment);
+		        if (salaryresults==null){
+	                status = Status.NO_RECORDS;
+	            }
+		        return new Response(status,salaryresults);
+		    }
 		 
 		   @RequestMapping(value = ACTION_BASE_URL_HEADER+"/insert.do" ,method = RequestMethod.POST)
 		    @ResponseBody
