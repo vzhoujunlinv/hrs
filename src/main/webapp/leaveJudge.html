@@ -212,7 +212,7 @@
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">审批时间</label>
                                                 <div class="col-sm-10">
-                                                <input type="text" class="form-control" data-mask="9999-99-99" placeholder="">
+                                                <input type="text" class="form-control" data-mask="9999-99-99" placeholder="" id="puttime">
                                                 </div>
                                             </div>
 
@@ -225,10 +225,10 @@
 
                                                   <div class="radio">
                                                         <label class="col-sm-10">
-                                                            <input type="radio" name="toasts" value="success" checked="">通过  
+                                                            <input type="radio" name="toasts" value="1" checked="">通过  
                                                         </label>
                                                         <label class="col-sm-10">
-                                                            <input type="radio" name="toasts" value="success" checked="">不通过  
+                                                            <input type="radio" name="toasts" value="0" checked="" >不通过  
                                                         </label>
                                                     </div>
                                                       
@@ -239,14 +239,14 @@
                                                 <label class="col-sm-2 control-label"><h4>审批人</h4></label>
 
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" id="putpeople">
                                                 </div>
                                             </div>
                                             
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label"><h4>审批意见</h4></label>
                                                 <div class="col-sm-8">
-                                                    <textarea id="ccomment" name="comment" class="form-control" required="" aria-required="true"></textarea>
+                                                    <textarea id="ccomment" name="comment" class="form-control" required="" aria-required="true" id="putadv"></textarea>
                                                 </div>
                                             </div>
                                                  
