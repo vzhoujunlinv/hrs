@@ -49,10 +49,10 @@ public class LeaveController {
 		{
 			int status = Status.ACTION_SUCCESS;
 			
-			Leave students=new Leave();
-			students = leaveMapper.selectLeaveState(lId);
+			Leave leaves=new Leave();
+			leaves = leaveMapper.selectLeaveState(lId);
 
-			return new Response(status, students);
+			return new Response(status, leaves);
 		}
 		
 		/**

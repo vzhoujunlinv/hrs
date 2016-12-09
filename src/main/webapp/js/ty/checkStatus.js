@@ -4,9 +4,9 @@
 $(function(){
 
         $.ajax({
-            type: "GET",
+            type: "POST",
             dataType: "json",
-            url: window.prePath + "leave/LeaveStatus",
+            url: window.prePath + "leave/LeaveStatus.do?lId=" + HRS.userId,
             success:function(data){
                 if(data.status == 12){
 

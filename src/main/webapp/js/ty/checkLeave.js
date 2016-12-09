@@ -5,7 +5,7 @@ $(function(){
     $.ajax({
         type:"GET",
         dataType:"json",
-        url:window.prePath +"leave/LeaveCheck.do?eNo"+eNo,
+        url:window.prePath +"leave/LeaveCheck.do?",
         success:function(data){
             if(data.status == 12) {
                 $(".pagination-nav").empty().remove();
@@ -43,7 +43,7 @@ $(function(){
         $.ajax({   
             type: "POST",
             dataType: "json",
-            url: window.prePath + "leave/LeaveStatus.do?eNo="+eNo,
+            url: window.prePath + "leave/LeaveCheck.do.do?eNo="+eNo,
             success:function(data){
                 if(data.status == 12){
 
