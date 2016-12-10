@@ -12,7 +12,7 @@ public class Salary {
     private Integer sLeaveNo;
     private Integer sOvertimeNo;
     private Integer sReal;  
-    private Date sDate;
+    private String sDate;
     private String sBeizhu;
     
 	public Integer getsId() {
@@ -57,10 +57,10 @@ public class Salary {
 	public void setsReal(Integer sReal) {
 		this.sReal = sReal;
 	}
-	public Date getsDate() {
+	public String getsDate() {
 		return sDate;
 	}
-	public void setsDate(Date sDate) {
+	public void setsDate(String sDate) {
 		this.sDate = sDate;
 	}
 	public String getsBeizhu() {

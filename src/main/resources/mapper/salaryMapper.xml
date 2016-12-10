@@ -12,7 +12,7 @@
 		<result column="sOvertimeNo" property="sOvertimeNo" jdbcType="INTEGER" />
 		<result column="sReal" property="sReal" jdbcType="INTEGER" />
 
-		<result column="sDate" property="sDate" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+		<result column="sDate" property="sDate" jdbcType="VARCHAR" />
 		<result column="sBeizhu" property="sBeizhu" jdbcType="VARCHAR" />	
 		<association property="employee" javaType="com.zhou.model.Employee" resultMap="EmployeeResultMap" />
 	</resultMap>
