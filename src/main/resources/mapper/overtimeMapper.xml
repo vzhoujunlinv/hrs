@@ -4,7 +4,8 @@
 <mapper namespace="com.zhou.dao.OvertimeDao">
 	<!--设置model类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致！column和数据库对应 -->
 	<resultMap id="OvertimeResultMap" type="com.zhou.model.Overtime">
-		<id column="oNo" property="oNo" jdbcType="VARCHAR" />
+		<id column="oId" property="oId" jdbcType="INTEGER" />
+		<result column="oNo" property="oNo" jdbcType="VARCHAR" />
 		<result column="oName" property="oName" jdbcType="VARCHAR" />
 		<result column="oReason" property="oReason" jdbcType="VARCHAR" />
 		<result column="oStartTime" property="oStartTime" jdbcType="DATE" />
@@ -16,22 +17,33 @@
 		<result column="oApproveAdvice" property="oApproveAdvice" jdbcType="INTEGER" />
 		<result column="oApprover" property="oApprover" jdbcType="VARCHAR" />
 	</resultMap>
-	<!-- 查询请假审核状态-->
-	<select id="selectOvertimeState" parameterType="String" resultMap="OvertimeResultMap">
+	<!-- 查询加班审核状态-->
+	<select id="selectOvertimeState" parameterType="int" resultMap="OvertimeResultMap">
 		SELECT * FROM overtime WHERE oId = #{oId}
 	</select>
-	<!-- 请假核实 -->
+	<!-- 加班核实 -->
 	<select id="selectOvertimeCheck" resultMap="OvertimeResultMap">
-		SELECT * FROM overtime	
+		SELECT oId,oNo,oName,oStartTime,oEndTime,oApproveState,oApprover,oApproveTime FROM overtime	
 	</select>
-	<!-- 请假申请 -->
+	<!-- 核实查看详情-->
+	<select id="selectOvertimeCheckDetail" parameterType="int" resultMap="OvertimeResultMap">
+		SELECT oReason,oApproveAdvice FROM overtime WHERE oId = #{oId}
+	</select>
+	<!-- 加班申请 -->
 	<insert id="saveOvertimeApply" parameterType="com.zhou.model.Overtime">
 		insert into overtime (oNo,oName,oStartTime,oEndTime,oReason,oApplyTime) 
 			values(#{oNo},#{oName},#{oStartTime},#{oEndTime},#{oReason},#{oApplyTime})  
 	</insert>
-	<!-- 请假审批 -->
+	<!-- 加班审批 -->
 	<update id="saveOvertimeApprove" parameterType="com.zhou.model.Overtime">
 		update overtime set oApproveTime=#{oApproveTime},oApprovePass=#{oApprovePass},oApproveState=#{oApproveState},oApproveAdvice=#{oApproveAdvice},oApprover=#{oApprover} where oId=#{oId}  
 	</update>
-	
+	<!-- 加班审批列表 -->
+	<select id="selectOvertimeApproveList" resultMap="OvertimeResultMap">
+		SELECT oId,oNo,oName,oStartTime,oEndTime FROM overtime	
+	</select>
+	<!-- 审批查看详情-->
+	<select id="selectOvertimeApproveDetail" parameterType="int" resultMap="OvertimeResultMap">
+		SELECT oReason FROM overtime WHERE oId = #{oId}
+	</select>
 </mapper>

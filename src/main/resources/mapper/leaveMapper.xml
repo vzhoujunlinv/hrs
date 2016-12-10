@@ -4,7 +4,8 @@
 <mapper namespace="com.zhou.dao.LeaveDao">
 	<!--设置model类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致！column和数据库对应 -->
 	<resultMap id="LeaveResultMap" type="com.zhou.model.Leave">
-		<id column="lNo" property="lNo" jdbcType="VARCHAR" />
+		<id column="lId" property="lId" jdbcType="INTEGER" />
+		<result column="lNo" property="lNo" jdbcType="VARCHAR" />
 		<result column="lName" property="lName" jdbcType="VARCHAR" />
 		<result column="lReason" property="lReason" jdbcType="VARCHAR" />
 		<result column="lStartTime" property="lStartTime" jdbcType="DATE" />
@@ -17,12 +18,16 @@
 		<result column="lApprover" property="lApprover" jdbcType="VARCHAR" />
 	</resultMap>
 	<!-- 查询请假审核状态-->
-	<select id="selectLeaveState" parameterType="String" resultMap="LeaveResultMap">
+	<select id="selectLeaveState" parameterType="int" resultMap="LeaveResultMap">
 		SELECT * FROM `leave` WHERE lId = #{lId}
 	</select>
 	<!-- 请假核实 -->
 	<select id="selectLeaveCheck" resultMap="LeaveResultMap">
-		SELECT * FROM `leave`	
+		SELECT lId,lNo,lName,lStartTime,lEndTime,lApproveState,lApprover,lApproveTime FROM `leave`	
+	</select>
+	<!-- 核实查看详情 -->
+	<select id="selectLeaveStateDetail" parameterType="int" resultMap="LeaveResultMap">
+		SELECT lReason,lApproveAdvice FROM `leave` WHERE lId = #{lId}
 	</select>
 	<!-- 请假申请 -->
 	<insert id="saveLeaveApply" parameterType="com.zhou.model.Leave">
@@ -33,5 +38,12 @@
 	<update id="saveLeaveApprove" parameterType="com.zhou.model.Leave">
 		update `leave` set lApproveTime=#{lApproveTime},lApprovePass=#{lApprovePass},lApproveState=#{lApproveState},lApproveAdvice=#{lApproveAdvice},lApprover=#{lApprover} where lId=#{lId}  
 	</update>
-
+	<!-- 请假审批显示列表 -->
+	<select id="selectLeaveApproveList" resultMap="LeaveResultMap">
+		SELECT lId,lNo,lName,lStartTime,lEndTime FROM `leave`	
+	</select>
+	<!-- 审批查看详情 -->
+	<select id="selectLeaveApproveDetail" parameterType="int" resultMap="LeaveResultMap">
+		SELECT lReason FROM `leave` WHERE lId = #{lId}
+	</select>
 </mapper>

@@ -13,7 +13,8 @@ public interface UserDao {
     public User selectUserById(Integer userId);  
     
     List<User> queryAllUser();
-    
+
+	public User loginUser(String userName);
     
     
 }

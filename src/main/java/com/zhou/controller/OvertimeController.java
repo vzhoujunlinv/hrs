@@ -36,15 +36,32 @@ public class OvertimeController {
 
 		return new Response(status, overtime);
 	}
+	/**
+	 * 审核 查看详情
+	 * @param request
+	 * @param oId
+	 * @return
+	 */
+	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/OvertimeCheckDetail.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Object OvertimeCheckDetail(HttpServletRequest request,@RequestParam int oId) 
+	{
+		int status = Status.ACTION_SUCCESS;
+		
+		Overtime students=new Overtime();
+		students = overtimeMapper.selectOvertimeCheckDetail(oId);
+
+		return new Response(status,students);
+	}
 		/**
 		 * 查询加班审核状态
 		 * @param request
-		 * @param oNo
+		 * @param oId
 		 * @return
 		 */
 		@RequestMapping(value = ACTION_BASE_URL_HEADER + "/OvertimeStatus.do", method = RequestMethod.POST)
 		@ResponseBody
-		public Object OvertimeStatus(HttpServletRequest request,@RequestParam String oId) 
+		public Object OvertimeStatus(HttpServletRequest request,@RequestParam int oId) 
 		{
 			int status = Status.ACTION_SUCCESS;
 			
@@ -83,5 +100,38 @@ public class OvertimeController {
 			Overtime to=overtime;
 			overtimeMapper.saveOvertimeApprove(to);
 			return new Response(status,to.getoApproveState());
+		}
+		/**
+		 * 加班审批列表 
+		 * @param request
+		 * @return
+		 */
+		@RequestMapping(value = ACTION_BASE_URL_HEADER + "/OvertimeApproveList.do", method = RequestMethod.GET)
+		@ResponseBody
+		public Object OvertimeApproveList(HttpServletRequest request) 
+		{
+			int status = Status.ACTION_SUCCESS;
+			
+			List<Overtime> overtime;
+			overtime = overtimeMapper.selectOvertimeApproveList();
+
+			return new Response(status, overtime);
+		}
+		/**
+		 * 审批查看详情
+		 * @param request
+		 * @param oId
+		 * @return
+		 */
+		@RequestMapping(value = ACTION_BASE_URL_HEADER + "/OvertimeApproveDetail.do", method = RequestMethod.POST)
+		@ResponseBody
+		public Object OvertimeApproveDetail(HttpServletRequest request,@RequestParam int oId) 
+		{
+			int status = Status.ACTION_SUCCESS;
+			
+			Overtime students=new Overtime();
+			students = overtimeMapper.selectOvertimeApproveDetail(oId);
+
+			return new Response(status,students);
 		}
 }
