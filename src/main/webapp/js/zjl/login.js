@@ -12,7 +12,7 @@ $(function(){
         }
 
         $.ajax({
-            url:window.prePath + "employee/login.do?eName="+loginName +"&password="+ passWord,
+            url:window.prePath + "employee/login.do?eNo="+loginName +"&password="+ passWord,
             type:"POST",
             contentType:"application/json",
             success:function(data){
@@ -24,6 +24,7 @@ $(function(){
                      sessionStorage.password = message.ePwd;
                      sessionStorage.Id = message.eId;
                      sessionStorage.rankNumber = message.role;
+                     sessionStorage.department = message.eDepartment;
                      location.href = window.prePath +"index.html"
                 }
                 if(data.status== 1){
@@ -32,6 +33,7 @@ $(function(){
                      sessionStorage.password = message.ePwd;
                      sessionStorage.Id = message.eId;
                      sessionStorage.rankNumber = message.role;
+                     sessionStorage.department = message.eDepartment;
                     location.href = window.prePath +"index.html"
                 }
                 if(data.status== 2){
@@ -40,6 +42,7 @@ $(function(){
                      sessionStorage.password = message.ePwd;
                      sessionStorage.Id = message.eId;
                      sessionStorage.rankNumber = message.role;
+                    sessionStorage.department = message.eDepartment;
                     location.href = window.prePath +"index.html"
                 }
                 

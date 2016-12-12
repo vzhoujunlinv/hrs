@@ -6,17 +6,18 @@ HRS.userRank = sessionStorage.userRank;//字符串
 HRS.rankNumber = sessionStorage.rankNumber;//等级数字
 HRS.loginName =sessionStorage.loginName;
 HRS.password =sessionStorage.password;
+// HRS.dep = sessionStorage.
 
-console.log(HRS.loginName);
-console.log(window.location.pathname);
-//权限管理，当未登录时，跳转到登陆界面
-if(HRS.loginName == null && window.location.pathname != "/hrs/login.html"){
-    location.href = "login.html";
-}
+// console.log(HRS.loginName);
+// console.log(window.location.pathname);
+// 权限管理，当未登录时，跳转到登陆界面
+// if(HRS.loginName == null && window.location.pathname != "/hrs/login.html"){
+//     location.href = "login.html";
+// }
 
-//登录后的标题栏显示
-$(".userName").html(HRS.loginName);
-$(".userRank").html(HRS.userRank);
+// //登录后的标题栏显示
+// $(".userName").html(HRS.loginName);
+// $(".userRank").html(HRS.userRank);
 
 
 

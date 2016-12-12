@@ -141,27 +141,23 @@
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="row">
                     <div class="input-group col-md-4 pull-left">
-                        <input type="text" class="form-control"> 
+                        <input type="text" class="form-control eNo"> 
                         <span class="input-group-btn"> 
-                            <button type="button" class="btn btn-primary">搜索
+                            <button type="button" class="selectOneBtn btn btn-primary">搜索
                             </button> 
                         </span>
                     </div>
                     <div class="col-md-4 pull-left">
-                        <select class="form-control" name="">
+                        <select class="form-control eDep" name="">
                             <option>全部</option>
-                            <option>策划部</option>
-                            <option>人事部</option>
+                            <option value="Tech">tech</option>
+                            <option value="Hr">人事部</option>
                             <option>后勤部</option>
                         </select>
                     </div>
                     <a class="btn btn-primary" href="addWorker.html">添加员工</a>
                 </div>
                 <div class="row">
-                    这里可以写自己的内容了
-                    可以从其他地方copy代码过来
-                    每个页面就是右边的页面标题和主内容可以改
-                    还要把左边li的active改成对应的那一个
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead>
@@ -176,7 +172,7 @@
                                     <th>操作</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="dataBody">
                                 <tr>
                                     <td>060201</td>
                                     <td>马云</td>
@@ -204,7 +200,7 @@
         </div>
     </div>
     <!-- 修改弹窗 -->
-    <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal inmodal" id="myModal1" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content animated bounceInRight">
                 <div class="modal-header">
@@ -216,25 +212,25 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>部门</label> 
-                    <input type="email" placeholder="部门名称" class="form-control">
+                    <input type="email" placeholder="部门名称" class="form-control newDepName">
                 </div>
                 <div class="form-group">
                     <label>职称</label> 
-                    <input type="email" placeholder="职称" class="form-control">
+                    <input type="email" placeholder="职称" class="form-control newTitleName">
                 </div>
                 <div class="form-group">
                     <label>手机号码</label> 
-                    <input type="email" placeholder="手机号码" class="form-control">
+                    <input type="email" placeholder="手机号码" class="form-control newTele">
                 </div>
                 <div class="form-group">
                     <label>Email</label> 
-                    <input type="email" placeholder="电子邮箱" class="form-control">
+                    <input type="email" placeholder="电子邮箱" class="form-control newEmail">
                 </div>
                 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">保存</button>
+                <button type="button" class="saveEmp btn btn-primary">保存</button>
             </div>
         </small></div><small class="font-bold">
         </small></div><small class="font-bold">
@@ -242,7 +238,7 @@
     </div>
 
     <!-- 确认弹窗 -->
-    <div class="modal inmodal fade in" id="myModal6" tabindex="-1" role="dialog" aria-hidden="false" style="display: none; padding-right: 17px;">
+    <div class="modal inmodal fade in" id="myModal2" tabindex="-1" role="dialog" aria-hidden="false" style="display: none; padding-right: 17px;">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
@@ -252,7 +248,7 @@
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-warning">确定</button>
+                    <button type="button" class="btn btn-warning subDeleteBtn">确定</button>
                 </div>
             </div>
         </div>
@@ -268,7 +264,7 @@
     <script src="js/plugins/pace/pace.min.js"></script>
     <!--加载js-->
     <script type="text/javascript" src="js/common/base.js"></script>
-
+	<script type="text/javascript" src="js/sk/employeeManage.js"></script>
 
 </body>
 

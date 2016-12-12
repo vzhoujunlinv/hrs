@@ -12,4 +12,5 @@ public interface PositionDao {
     public void savePos(Position position);
     public List<Position> findAllPos();
     public void updatePos(Position position);
+    public void deletePos(int pId);
 }

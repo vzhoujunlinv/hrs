@@ -19,7 +19,11 @@
 
 	<!-- 修改部门 -->
 	<update id="updatePos" parameterType="com.zhou.model.Position">
-	    update position set pState=#{pState} where pName=#{pName} 
+	    update position set pName=#{pName} where pId=#{pId} 
 	</update>
 	
+	<!-- 删除部门 -->
+	<delete id="deletePos" parameterType="int">
+        DELETE FROM position WHERE pId=#{pId}
+    </delete>
 </mapper>

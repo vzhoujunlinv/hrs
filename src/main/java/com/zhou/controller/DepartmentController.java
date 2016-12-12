@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.zhou.common.Response;
 import com.zhou.common.Status;
 import com.zhou.dao.*;
+import com.zhou.exception.UnknownException;
 import com.zhou.model.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -62,6 +63,16 @@ public class DepartmentController {
 		int status = Status.ACTION_SUCCESS;
 		Department dep=department;
 		departmentMapper.updateDep(dep);
-		return new Response(status,dep.getdState());
+		return new Response(status,dep);
 	}
+	/**
+	 * 删除部门
+	 */
+	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/deleteDep.do",method = RequestMethod.POST)
+    @ResponseBody
+    public Object deleteTask(@RequestParam("dId") int dId){
+        int status = Status.ACTION_SUCCESS;
+        departmentMapper.deleteDep(dId);
+        return new Response(status);
+    }
 }

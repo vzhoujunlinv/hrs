@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.zhou.model.Overtime;
 
 public interface OvertimeService {
-	 public Overtime selectOvertimeState(String oNo);  
+	 public Overtime selectOvertimeState(Integer oNo);  
 	    public List<Overtime> selectOvertimeCheck();
 	    
 	    void saveOvertimeApprove(Overtime overtime);

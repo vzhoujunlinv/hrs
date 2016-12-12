@@ -13,7 +13,7 @@ public class OvertimeServiceImpl implements OvertimeService{
 	@Autowired  
     private OvertimeDao overtimeDao;  
 
-	public Overtime selectOvertimeState(String oNo)
+	public Overtime selectOvertimeState(Integer oNo)
 	{  
         return overtimeDao.selectOvertimeState(oNo);  
     } 
@@ -29,6 +29,5 @@ public class OvertimeServiceImpl implements OvertimeService{
 	{  
 		overtimeDao.saveOvertimeApprove(overtime);  
     }
-	
 
 }

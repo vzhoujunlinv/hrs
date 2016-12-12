@@ -27,11 +27,11 @@ public class LoginController {
 	
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/login.do",method = RequestMethod.POST)
     @ResponseBody
-    public Object loginEmployee(@RequestParam("eName")String eName, @RequestParam("password")String ePwd,HttpServletRequest request){
+    public Object loginEmployee(@RequestParam("eNo")String eNo, @RequestParam("password")String ePwd,HttpServletRequest request){
         int status;
         Employee emp = null;
         try {
-        	emp = loginService.loginEmployee(eName, ePwd);
+        	emp = loginService.loginEmployee(eNo, ePwd);
             status = emp.getRole();
         } catch (NotExistException e) {
             e.printStackTrace();

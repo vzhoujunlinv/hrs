@@ -140,34 +140,42 @@
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="form-group">
                     <label>姓名</label> 
-                    <input type="email" placeholder="员工姓名" class="form-control">
+                    <input type="text" placeholder="员工姓名" class="form-control eName">
+                </div>
+                 <div class="form-group">
+                    <label>编号</label> 
+                    <input type="text" placeholder="员工编号" class="form-control eNo">
+                </div>
+                <div class="form-group">
+                    <label>密码</label> 
+                    <input type="text" placeholder="登录密码" class="form-control ePwd">
                 </div>
                 <div class="form-group">
                     <label>部门</label> 
-                    <input type="email" placeholder="部门名称" class="form-control">
+                    <input type="text" placeholder="部门名称" class="form-control eDepartment">
                 </div>
                 <div class="form-group">
                     <label>职称</label> 
-                    <input type="email" placeholder="职称" class="form-control">
+                    <input type="text" placeholder="职称" class="form-control eTitle">
                 </div>
                 <div class="form-group">
                     <label>性别</label>
 
-                    <select class="form-control m-b" name="account">
-                        <option>男</option>
-                        <option>女</option>
+                    <select class="form-control m-b eSex" name="account">
+                        <option value="1">男</option>
+                        <option value="2">女</option>
                     </select>
 
                 <div class="form-group">
                     <label>手机号码</label> 
-                    <input type="email" placeholder="手机号码" class="form-control">
+                    <input type="text" placeholder="手机号码" class="form-control eTele">
                 </div>
                 <div class="form-group">
                     <label>Email</label> 
-                    <input type="email" placeholder="电子邮箱" class="form-control">
+                    <input type="email" placeholder="电子邮箱" class="form-control eMail">
                 </div>
             </div>
-            <button type="button" class="btn btn-primary">提交</button>
+            <button type="button" class="btn btn-primary saveBtn">提交</button>
             <button type="button" class="btn btn-warning">清空</button>
             <!-- 页面主内容完 -->
         </div>
@@ -185,6 +193,7 @@
 
 
     <script type="text/javascript" src="js/common/base.js"></script>
+     <script type="text/javascript" src="js/sk/employeeManage.js"></script>
 </body>
 
 </html>
