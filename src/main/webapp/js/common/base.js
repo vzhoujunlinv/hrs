@@ -14,10 +14,18 @@ console.log(window.location.pathname);
 if(HRS.loginName == null && window.location.pathname != "/hrs/login.html"){
     location.href = "login.html";
 }
+// HRS.dep = sessionStorage.
 
-//登录后的标题栏显示
-$(".userName").html(HRS.loginName);
-$(".userRank").html(HRS.userRank);
+// console.log(HRS.loginName);
+// console.log(window.location.pathname);
+// 权限管理，当未登录时，跳转到登陆界面
+// if(HRS.loginName == null && window.location.pathname != "/hrs/login.html"){
+//     location.href = "login.html";
+// }
+
+// //登录后的标题栏显示
+// $(".userName").html(HRS.loginName);
+// $(".userRank").html(HRS.userRank);
 
 
 

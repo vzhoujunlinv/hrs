@@ -20,7 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	{
 		return employeeDao.findAllEmp();
 	}
-    public Employee selectEmpById(String eNo)
+    public List<Employee> selectEmpById(String eNo)
     {
     	return employeeDao.selectEmpById(eNo);
     }

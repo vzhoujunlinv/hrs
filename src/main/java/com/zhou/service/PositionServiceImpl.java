@@ -24,4 +24,7 @@ public class PositionServiceImpl implements PositionService{
     {
     	positionDao.updatePos(position);
     }
+	public void deletePos(int pId) {
+		positionDao.deletePos(pId);
+	}
 }

@@ -22,7 +22,7 @@ public class EmployeeController {
 	EmployeeDao employeeMapper;
 	
 	/**
-	 * 查询单个员工
+	 * 由员工编号查询
 	 * @param request
 	 * @param eNo
 	 * @return
@@ -32,8 +32,25 @@ public class EmployeeController {
 	public Object selEmpById(HttpServletRequest request,@RequestParam String eNo) 
 	{
 		int status = Status.ACTION_SUCCESS;
-		Employee students=new Employee();
+		
+		List<Employee> students;
 		students = employeeMapper.selectEmpById(eNo);
+		return new Response(status, students);
+	}
+	/**
+	 * 由部门查询
+	 * @param request
+	 * @param eDepartment
+	 * @return
+	 */
+	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/selEmpByDep.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Object selEmpByDep(HttpServletRequest request,@RequestParam String eDepartment) 
+	{
+		int status = Status.ACTION_SUCCESS;
+		
+		List<Employee> students;
+		students = employeeMapper.selectEmpByDep(eDepartment);
 		return new Response(status, students);
 	}
 	/**
@@ -122,11 +139,11 @@ public class EmployeeController {
 	 */
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/deleteEmp.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Object deleteEmp(HttpServletRequest request,@RequestBody Employee employee) 
+	public Object deleteEmp(HttpServletRequest request,@RequestParam("eNo")String eNo) 
 
 	{
 		int status = Status.ACTION_SUCCESS;
-		employeeMapper.deleteEmp( employee.geteNo());
+		employeeMapper.deleteEmp( eNo);
 		return new Response(status);
 	}
 }

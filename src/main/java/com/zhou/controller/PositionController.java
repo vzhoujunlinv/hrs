@@ -64,6 +64,16 @@ public class PositionController {
 		int status = Status.ACTION_SUCCESS;
 		Position pos=position;
 		positionMapper.updatePos(pos);
-		return new Response(status,pos.getpState());
+		return new Response(status,pos.getpName());
 	}
+	/**
+	 * 删除职称
+	 */
+	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/deletePos.do",method = RequestMethod.POST)
+    @ResponseBody
+    public Object deleteTask(@RequestParam("pId") int pId){
+        int status = Status.ACTION_SUCCESS;
+        positionMapper.deletePos(pId);
+        return new Response(status,pId);
+    }
 }

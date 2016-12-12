@@ -13,4 +13,5 @@ public interface DepartmentDao {
     public void saveDep(Department department);
     public List<Department> findAllDep();
     public void updateDep(Department department);
+	public void deleteDep(int dId);
 }

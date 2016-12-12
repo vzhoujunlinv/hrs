@@ -14,10 +14,15 @@
 		<result column="eMail" property="eMail" jdbcType="VARCHAR" />
 		<result column="eBasicSalary" property="eBasicSalary" jdbcType="INTEGER" />
 	</resultMap>
-	<!-- 查询单个员工-->
+	<!-- 由员工编号查询-->
 	<select id="selectEmpById" parameterType="String" resultMap="EmployeeResultMap">
 
-		SELECT * FROM employee WHERE eNo = #{eNo}
+		SELECT * FROM employee WHERE eNo like CONCAT('%',#{eNo},'%')
+	</select>
+	<!-- 由部门查询-->
+	<select id="selectEmpByDep" parameterType="String" resultMap="EmployeeResultMap">
+
+		SELECT * FROM employee WHERE eDepartment=#{eDepartment}
 	</select>
 	<!-- 查询所有员工 -->
 	<select id="findAllEmp" resultMap="EmployeeResultMap">
@@ -25,13 +30,28 @@
 	</select>
 	<!-- 添加员工 -->
 	<insert id="saveEmp" parameterType="com.zhou.model.Employee" >
-		insert into employee(eNo,eName,eSex,eDepartment,eTitle,eTele,eMail,ePwd,eState) 
-			values (#{eNo},#{eName},#{eSex},#{eDepartment},#{eTitle},#{eTele},#{eMail},#{ePwd},#{eState})  
+		insert into employee(eNo,eName,eSex,eDepartment,eTitle,eTele,eMail,ePwd) 
+			values (#{eNo},#{eName},#{eSex},#{eDepartment},#{eTitle},#{eTele},#{eMail},#{ePwd})  
 	</insert>
 	<!-- 修改员工资料 -->
 
 	<update id="updateEmp" parameterType="com.zhou.model.Employee">
-		update employee set eDepartment=#{eDepartment},eTitle=#{eTitle},eTele=#{eTele},eMail=#{eMail} where eNo=#{eNo}
+		update employee 
+		<set>
+			<if test="eDepartment != null"> 
+				eDepartment=#{eDepartment}
+			</if>
+			<if test="eTitle != null"> 
+				,eTitle=#{eTitle}
+			</if>
+			<if test="eTele != null"> 
+				,eTele=#{eTele}
+			</if>
+			<if test="eMail != null"> 
+				,eMail=#{eMail} 
+			</if>
+		</set>
+		where eNo=#{eNo}
 	</update>
 	<!-- 修改员工密码 -->
 	<update id="updatePwd" parameterType="com.zhou.model.Employee">

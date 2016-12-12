@@ -25,6 +25,7 @@ $(function(){
                      sessionStorage.Id = message.eId;
                      sessionStorage.rankNumber = message.role;
                      sessionStorage.eNo = message.eNo;
+                     sessionStorage.department = message.eDepartment;
                      location.href = window.prePath +"index.html"
                 }
                 if(data.status== 1){
@@ -34,6 +35,7 @@ $(function(){
                      sessionStorage.Id = message.eId;
                      sessionStorage.rankNumber = message.role;
                      sessionStorage.eNo = message.eNo;
+                     sessionStorage.department = message.eDepartment;
                     location.href = window.prePath +"index.html"
                 }
                 if(data.status== 2){
@@ -43,6 +45,7 @@ $(function(){
                      sessionStorage.Id = message.eId;
                      sessionStorage.rankNumber = message.role;
                      sessionStorage.eNo = message.eNo;
+                    sessionStorage.department = message.eDepartment;
                     location.href = window.prePath +"index.html"
                 }
                 

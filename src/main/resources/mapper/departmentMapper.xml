@@ -14,12 +14,16 @@
 	</select>
 	<!-- 添加部门-->
 	<insert id="saveDep" parameterType="com.zhou.model.Department">
-		insert into department (dName,dState,dSuperior) values (#{dName},#{dState},#{dSuperior})
+		insert into department (dName,dSuperior) values (#{dName},#{dSuperior})
 	</insert>
 
 	<!-- 修改部门 -->
 	<update id="updateDep" parameterType="com.zhou.model.Department">
-	    update department set dState=#{dState}, dSuperior=#{dSuperior} where dName=#{dName} 
+	    update department set dName=#{dName}, dSuperior=#{dSuperior} where dId=#{dId} 
 	</update>
 	
+	<!-- 删除部门 -->
+	<delete id="deleteDep" parameterType="int">
+        DELETE FROM department WHERE dId = #{dId}
+    </delete>
 </mapper>
