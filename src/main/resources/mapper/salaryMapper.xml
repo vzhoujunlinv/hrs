@@ -12,15 +12,16 @@
 		<result column="sOvertimeNo" property="sOvertimeNo" jdbcType="INTEGER" />
 		<result column="sReal" property="sReal" jdbcType="INTEGER" />
 
-		<result column="sDate" property="sDate" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+		<result column="sDate" property="sDate" jdbcType="VARCHAR" />
 		<result column="sBeizhu" property="sBeizhu" jdbcType="VARCHAR" />	
 		<association property="employee" javaType="com.zhou.model.Employee" resultMap="EmployeeResultMap" />
 	</resultMap>
 	<resultMap id="EmployeeResultMap" type="com.zhou.model.Employee" >
 		<id column="eId" property="eId" jdbcType="INTEGER" />
 		<result column="eNo" property="eNo" jdbcType="VARCHAR" />
-		<result column="eDepartment" property="eDepartment" jdbcType="INTEGER" />
-		<result column="eTitle" property="eTitle" jdbcType="INTEGER" />		
+		<result column="dId" property="eDepartment" jdbcType="INTEGER" />
+		<result column="eDepartment" property="eDepartment" jdbcType="VARCHAR" />
+		<result column="eTitle" property="eTitle" jdbcType="VARCHAR" />	
 	</resultMap>
 	
 	<resultMap id="LeaveResultMap" type="com.zhou.model.Leave">
@@ -53,10 +54,10 @@
 	<!-- 计算薪资 -->
 	<select id="ComputeSal" parameterType="Integer" resultMap="SalaryResultMap">
 
-		SELECT employee.eNo as sNo,employee.eName as sName,employee.sBasicSalary as sBasic,count(distinct l.lId) as sLeaveNo ,count(distinct o.oId) as sOvertimeNo ,employee.sBasicSalary+(count(distinct o.oId)-count(distinct l.lId))*100 as sReal,now() as sDate 
+		SELECT employee.eNo as sNo,employee.eName as sName,employee.eBasicSalary as sBasic,count(distinct l.lId) as sLeaveNo ,count(distinct o.oId) as sOvertimeNo ,employee.eBasicSalary+(count(distinct o.oId)-count(distinct l.lId))*100 as sReal,now() as sDate 
 		FROM  employee left join `leave` as l on l.lNo=employee.eNo left join overtime as o on o.oNo=employee.eNo 
-		where employee.eDepartment like #{eDepartment}
-		GROUP BY employee.eNo,employee.eName,employee.sBasicSalary
+		where employee.dId=#{eDepartment}
+		GROUP BY employee.eNo,employee.eName,employee.eBasicSalary
 	</select>
 	
 	<!-- 查询薪资 -->

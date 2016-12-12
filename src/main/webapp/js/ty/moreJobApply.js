@@ -5,16 +5,15 @@ $(function(){
     checkNull();//检查输入框是否为空
 
     //请假申请
-    $("#leaveapply").click(function() {
+    $("#moreapply").click(function() {
         var modifyData = {
             // id:HRS.userId,
-            //lNo:"2014029",
-            lNo:$("#leaveNo").val(),
-            lName: $("#leaveName").val(),
-            lStartTime: $("#start").val(),
-            lEndTime: $("#end").val(),
-            lReason: $("#leaveReason").val(),
-            lApplyTime: $("#lApplyTime").val()
+            oNo:$("#moreNo").val(),
+            oName: $("#moreName").val(),
+            oStartTime: $("#start").val(),
+            oEndTime: $("#end").val(),
+            oReason: $("#moreReason").val(),
+            oApplyTime: $("#mApplyTime").val()
         };
         console.log(modifyData);
         console.log($("#end").val(),$("#start").val());
@@ -22,20 +21,19 @@ $(function(){
         var valHTML="";
         ulHTML += $(".inputName-status").html();
         ulHTML += $(".inputId-status").html();
-        valHTML += $("#leaveName").val();
+        valHTML += $("#moreName").val();
         if(ulHTML == ""){
             if(!(valHTML == null ||valHTML == "")){
                 $.ajax({
                     type: "POST",
                     dataType: "json",
                     contentType:"application/json",
-                    url: window.prePath +"leave/LeaveApply.do",
+                    url: window.prePath +"overtime/OvertimeApply.do",
                     data: JSON.stringify(modifyData),
                     success: function (data) {
                         if (data.status == 12) {
-                           location.reload();
+                            
                         }
-                    
                     },
                     error: function () {
                         alert("ajax请求失败！");

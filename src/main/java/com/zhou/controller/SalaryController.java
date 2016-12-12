@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 import com.zhou.service.SalaryService;
+import com.zhou.util.TimeUtil;
+
+
 
 @Controller  
 public class SalaryController {
@@ -59,7 +62,7 @@ public class SalaryController {
 		 
 		 @RequestMapping(value = ACTION_BASE_URL_HEADER+"/ComputeSal.do",method = RequestMethod.GET)
 		    @ResponseBody
-		    public Object ComputeSal(@RequestParam String eDepartment,HttpServletRequest request){
+		    public Object ComputeSal(@RequestParam("eDepartment")int eDepartment,HttpServletRequest request){
 		        int status = Status.ACTION_SUCCESS;
 		        Salary salaryresults;
 		        salaryresults =SalaryService.ComputeSal(eDepartment);
@@ -72,7 +75,7 @@ public class SalaryController {
 		   @RequestMapping(value = ACTION_BASE_URL_HEADER+"/insert.do" ,method = RequestMethod.POST)
 		    @ResponseBody
 		    public Object insertSalary(HttpServletRequest request,
-		                                 @RequestParam("eDepartment") String eDepartment){
+		                                 @RequestParam("eDepartment")int eDepartment){
 		        int status = Status.ACTION_SUCCESS;
 		        int flag=SalaryService.SetSalary(eDepartment);		        
 		        if(flag==0){
@@ -80,5 +83,6 @@ public class SalaryController {
 		        }
 		        return new Response(status);
 		    }
+		   
 
 }

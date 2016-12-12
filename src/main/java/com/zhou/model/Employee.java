@@ -21,6 +21,7 @@ public class Employee {
     private String eMail;  
     private String eBeizhu;
     private Integer eBasicSalary;
+    private Integer dId;
     public Integer getRole() {
 		return role;
 	}
@@ -136,5 +137,11 @@ public class Employee {
 	}
 	public void seteBasicSalary(Integer eBasicSalary) {
 		this.eBasicSalary = eBasicSalary;
+	}
+	public Integer getdId() {
+		return dId;
+	}
+	public void setdId(Integer dId) {
+		this.dId = dId;
 	}
 }

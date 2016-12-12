@@ -168,33 +168,35 @@
                 <div class="ibox-content">
                         <form method="get" class="form-horizontal">
                                 <div class="form-group">
-                                        <label class="col-sm-4 control-label"><h4>姓名</h4></label>
+                                        <label class="col-sm-4 control-label" for="moreNam"><h4>姓名</h4></label>
 
                                         <div class="col-sm-4">
-                                                <input type="text" class="form-control" id="xinming">
+                                                <input type="text" class="form-control" id="moreName">
                                         </div>
+                                        <p class="status inputName-status"></p>
                                 </div>
                                 <div class="form-group">
-                                        <label class="col-sm-4 control-label"><h4>员工编号</h4></label>
+                                        <label class="col-sm-4 control-label" for="moreNo"><h4>员工编号</h4></label>
 
                                         <div class="col-sm-4">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control"  id="moreNo">
                                         </div>
+                                        <p class="status inputId-status"></p>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-group" id="data_5">
                                         <label class="col-sm-4 control-label"><h4>加班起止时间</h4></label>
                                         <div class="input-daterange input-group" id="datepicker">
-                                            <input type="text" class="input-sm form-control" name="start" value="2014-11-11" />
+                                            <input type="text" class="input-sm form-control" id="start" value="2014-11-11" />
                                             <span class="input-group-addon">到</span>
-                                            <input type="text" class="input-sm form-control" name="end" value="2014-11-17" />
+                                            <input type="text" class="input-sm form-control" id="end" value="2014-11-17" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><h4>加班理由</h4></label>
+                                    <label class="col-sm-3 control-label" for="moreReason"><h4>加班理由</h4></label>
                                     <div class="col-sm-8">
-                                        <textarea id="ccomment" name="comment" class="form-control" required="" aria-required="true"></textarea>
+                                        <textarea  id="moreReason" name="comment" class="form-control" required="" aria-required="true"></textarea>
                                     </div>
                                 </div>
 
@@ -202,14 +204,14 @@
                                     <label class="col-sm-9 control-label">提交时间</label>
                                     <div class="input-group date">
                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                        <input type="text" class="form-control" value="2014-11-11">
+                                        <input type="text" class="form-control" value="2014-11-11" id="mApplyTime">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                   <div class="col-sm-3 col-sm-offset-5">
-                                            <button class="btn btn-primary" type="submit">提交</button>
-                                            <button class="btn btn-white" type="submit">取消</button>
+                                            <button class="btn btn-primary" id="moreapply">提交</button>
+                                            <button class="btn btn-white" >取消</button>
                                 </div>
                                 </div>
                                
@@ -494,6 +496,7 @@
 
 
     <script type="text/javascript" src="js/common/base.js"></script>
+    <script type="text/javascript" src="js/ty/moreJobApply.js"></script>
 
 
 

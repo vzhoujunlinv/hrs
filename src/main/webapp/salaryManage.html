@@ -148,11 +148,11 @@
                         </span>                        
                     </div>
                     <div class="col-md-4 pull-left">
-                        <select class="form-control" name="">
-                            <option>全部</option>
-                            <option>策划部</option>
-                            <option>人事部</option>
-                            <option>后勤部</option>
+                        <select class="form-control" id="selectDep">
+                            <option value="4">全部</option>
+                            <option value="5">策划部</option>
+                            <option value="6">人事部</option>
+                            <option value="7">后勤部</option>
                         </select>
                     </div>
                     <button type="button" class="btn btn-warning m-t-n-xs" id="Compute">结算</button> 
@@ -185,7 +185,7 @@
         </div>
     </div>
     <!-- 修改弹窗 -->
-    <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal inmodal" id="modifySal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content animated bounceInRight">
                 <div class="modal-header">
@@ -197,14 +197,14 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>基本薪资</label> 
-                    <input type="email" placeholder="基本薪资" class="form-control">
+                    <input type="email" placeholder="基本薪资" class="form-control" id="eBasicSalary">
                 </div>   
                 
                                              
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-primary" id="save">保存</button>
             </div>
         </small></div><small class="font-bold">
         </small></div><small class="font-bold">

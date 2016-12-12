@@ -14,7 +14,7 @@ public interface SalaryDao {
     
     public List<SalaryDetail> GetSalaryDetail(String eNo);
    
-    public Salary ComputeSal(String eDepartment);
+    public Salary ComputeSal(int eDepartment);
     
     public int AddSal(Salary salary);
 

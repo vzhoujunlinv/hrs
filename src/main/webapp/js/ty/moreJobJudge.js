@@ -4,21 +4,20 @@ $(function(){
     $.ajax({
         type:"GET",
         dataType:"json",
-        url:window.prePath+"leave/LeaveApproveList.do?",
+        url:window.prePath+"overtime/OvertimeApproveList.do?",
         success:function(data){
             if(data.status == 12) {
-                var leaveJudge = eval(data.body);
-                console.log(leaveJudge[0]);
+                var moreJudge = eval(data.body);
                 var strHTML = "";
                 var ApproveBtn = "<button type='button' class='Approve btn btn-primary m-t-n-xs'  data-toggle='modal' data-target='#myModal'><strong>审批</strong></button>"
                 var LookBtn = "<button type='button' class='look btn btn-warning m-t-n-xs'  data-toggle='modal' data-target='#myModal1'><strong>查看详情</strong></button>"
 
-                $.each(leaveJudge, function (index) {
-                    strHTML += "<tr><td class='lId' style='display: none'>" + leaveJudge[index].lId + "</td>";
-                    strHTML += "<td>" +leaveJudge[index].lNo + "</td>";
-                    strHTML += "<td>" + leaveJudge[index].lName + "</td>";
-                    strHTML += "<td>" + leaveJudge[index].lStartTime+ "</td>";
-                    strHTML += "<td>" + leaveJudge[index].lEndTime+ "</td>";
+                $.each(moreJudge, function (index) {
+                    strHTML += "<tr><td class='oId' style='display: none'>" + moreJudge[index].oId + "</td>";
+                    strHTML += "<td>" + moreJudge[index].oNo + "</td>";
+                    strHTML += "<td>" + moreJudge[index].oName + "</td>";
+                    strHTML += "<td>" + moreJudge[index].oStartTime+ "</td>";
+                    strHTML += "<td>" + moreJudge[index].oEndTime+ "</td>";
                     strHTML += "<td>" + ApproveBtn ;
                     strHTML += LookBtn + "</td></tr>";
                     $("tbody").html(strHTML);       
@@ -26,15 +25,15 @@ $(function(){
              }
              $(".look").click(function(){
                     //console.log("hahah");
-                    var lId=$(this).parents("td").parents("tr").children(".lId").html();
+                    var oId=$(this).parents("td").parents("tr").children(".oId").html();
                     $.ajax({
                         type: "POST",
                         dataType: "json",
-                        url:window.prePath+"leave/LeaveApproveDetail.do?lId="+lId,
+                        url:window.prePath+"overtime/OvertimeApproveDetail.do?oId="+oId,
                         success:function(data){
                             if(data.status == 12){
                                 var message = eval(data.body);
-                                $("#lReason").html(message.lReason);
+                                $("#oReason").html(message.oReason);
         
                             }
                         }
@@ -44,23 +43,23 @@ $(function(){
 
             var eNumber;
             $(".Approve").click(function(){
-                    eNumber=$(this).parents("td").parents("tr").children(".lId").html();
+                    eNumber=$(this).parents("td").parents("tr").children(".oId").html();
                 })
                 $("#save").bind("click", function(){
                      console.log(eNumber);
                      var modifyData={
-                            lId:eNumber,
-                            lApproveTime:$("#lApproveTime").val(),
-                            lApproveState:$("#lApproveState").val(),
-                            lApprover:$("#lApprover").val(),
-                            lApproveAdvice:$("#lApproveAdvice").val()
+                            oId:eNumber,
+                            oApproveTime:$("#oApproveTime").val(),
+                            oApproveState:$("#oApproveState").val(),
+                            oApprover:$("#oApprover").val(),
+                            oApproveAdvice:$("#oApproveAdvice").val()
 
                      }; 
                      //console.log(modifyData);               
                     $.ajax({
                         type: "POST",
                         contentType:"application/json",
-                        url:window.prePath+"leave/LeaveApprove.do",
+                        url:window.prePath+"overtime/OvertimeApprove.do",
                         data: JSON.stringify(modifyData),
                         success: function (data) {
                             if (data.status == 12) {

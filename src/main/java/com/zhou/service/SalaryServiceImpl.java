@@ -34,13 +34,13 @@ public class SalaryServiceImpl implements SalaryService{
 	}
 
 	@Override
-	public int SetSalary(String eDepartment) {
+	public int SetSalary(int eDepartment) {
 		Salary salary1=SalaryDao.ComputeSal(eDepartment);
     	return SalaryDao.AddSal(salary1);
 	}
 	
 	@Override
-	public Salary ComputeSal(String eDepartment){
+	public Salary ComputeSal(int eDepartment){
 		return SalaryDao.ComputeSal(eDepartment);
 	}
 
