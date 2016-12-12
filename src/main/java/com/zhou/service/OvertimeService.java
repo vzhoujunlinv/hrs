@@ -9,7 +9,7 @@ import com.zhou.model.Overtime;
 public interface OvertimeService {
 	    //public Overtime selectOvertimeState(int oNo);  
 
-		public Overtime selectOvertimeState(int oId);  
+		//public Overtime selectOvertimeState(int oId);  
 	    public List<Overtime> selectOvertimeCheck();
 	    
 	    void saveOvertimeApprove(Overtime overtime);
