@@ -164,27 +164,74 @@
             </div>
             <!-- 页面标题完 -->
             <!-- 页面主内容 -->
-             <div class="wrapper wrapper-content animated fadeInRight">
-                <div class="ibox-content">
-                        <form method="get" class="form-horizontal">
-                                <div class="form-group">
-                                        <p class="col-sm-3"><h3>姓名       :<span></span></h3></p>
-                                        <p class="col-sm-3"><h3>员工编号   :<span></span></h3></p>
-                                        <p class="col-sm-3"><h3>审批状态   :<span></span></h3></p>
-                                        <p class="col-sm-3"><h3>审批时间   :<span></span></h3></p>
-                                        <p class="col-sm-3"><h3>审核意见   :<span></span></h3></p>
-                                </div>
-                                
-                  
-                        </form>    
-                </div>
+              <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>员工编号</th>
+                                    <th>姓名</th>
+                                    <th>加班开始时间</th>
+                                    <th>加班结束时间</th>
+                                    <th>审核状态</th>
+                                    <th>审核人</th>
+                                    <th>审核时间</th>  
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                 </div>
+               </div>
             </div>
-            
-    
+           
+    <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content animated bounceInRight">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                                                </button>
+                                                <i class="fa fa-laptop modal-icon"></i>
+                                                <h4 class="modal-title">审核状态</h4>
+                                            </div>
+                                    <div class="ibox-content">
+                                        <form method="get" class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label"><h3>加班理由</h3></label>
 
+                                               
+                                        <div class="row m-t-lg">
+                                            <div class="col-lg-12">
+                                                <pre id="oReason" class="p-m">
+                                                </pre>
+                                            </div>
+                                        </div>
+                                            </div>
+                                        </form> 
+                                   
+                                        <form method="get" class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label"><h3>审核意见</h3></label>
 
-            <!-- 页面主内容完 -->
+                                               
+                                        <div class="row m-t-lg">
+                                            <div class="col-lg-12">
+                                                <pre id="oApproveAdvice" class="p-m">
+                                                </pre>
+                                            </div>
+                                        </div>
+                                            </div>
+                                        </form> 
+                                    </div>
+                                    <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                                          
+                                        </div>
+                </div>
         </div>
+
+    </div>        
     </div>
     <!-- Mainly scripts -->
     <script src="js/jquery-2.1.1.min.js"></script>

@@ -9,7 +9,7 @@ import com.zhou.model.Leave;
 public interface LeaveService {
 	 //Leave selectLeaveState(String lNo);
 
-	    public Leave selectLeaveState(String lNo);  
+	    //public Leave selectLeaveState(String lNo);  
 
 	    public List<Leave> selectLeaveCheck();
 

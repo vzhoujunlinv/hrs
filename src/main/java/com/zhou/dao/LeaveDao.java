@@ -13,18 +13,21 @@ public interface LeaveDao {
      * @return LeaveState
      */
 	//查看审批状态
-    public Leave selectLeaveState(String lId);
+    public List<Leave> selectLeaveState(String lNo);
+    //查询查看详情
+    public Leave selectLeaveStateDetail(int lId);  
     //请假审核：显示请假列表
     List<Leave> selectLeaveCheck();
     //请假审核：查看详情
-    public Leave selectLeaveStateDetail(String lId);  
+    public Leave selectLeaveCheckDetail(int lId);  
     //请假审批
     void saveLeaveApprove(Leave leave);
     //请假审批：查看理由
-    public Leave selectLeaveApproveDetail(String lId);
+    public Leave selectLeaveApproveDetail(int lId);
     //请假审批：显示列表
     List<Leave> selectLeaveApproveList();
     //请假申请
     void saveLeaveApply(Leave leave);
+	//public Leave selectLeaveCheckDetail(int lId);
     
 }

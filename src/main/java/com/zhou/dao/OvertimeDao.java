@@ -6,7 +6,9 @@ import com.zhou.model.Overtime;
 
 public interface OvertimeDao {
 	//查看加班审批状态
-    public Overtime selectOvertimeState(int oId); 
+	List<Overtime> selectOvertimeState(String oNo);
+    //加班审核查看详情
+    public Overtime selectOvertimeStateDetail(int oId);
     //加班审核列表
     List<Overtime> selectOvertimeCheck();
     //加班审核查看详情

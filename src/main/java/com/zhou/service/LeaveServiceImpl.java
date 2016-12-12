@@ -14,10 +14,10 @@ public class LeaveServiceImpl implements LeaveService{
 	@Autowired  
     private LeaveDao leaveDao;  
 
-	public Leave selectLeaveState(String lNo)
-	{  
-        return leaveDao.selectLeaveState(lNo);  
-    } 
+//	public Leave selectLeaveState(String lNo)
+//	{  
+//        return leaveDao.selectLeaveState(lNo);  
+//    } 
 	public List<Leave> selectLeaveCheck()
 	{  
         return leaveDao.selectLeaveCheck();  

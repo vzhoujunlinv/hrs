@@ -13,10 +13,10 @@ public class OvertimeServiceImpl implements OvertimeService{
 	@Autowired  
     private OvertimeDao overtimeDao;  
 
-	public Overtime selectOvertimeState(int oNo)
-	{  
-        return overtimeDao.selectOvertimeState(oNo);  
-    } 
+//	public Overtime selectOvertimeState(int oNo)
+//	{  
+//        return overtimeDao.selectOvertimeState(oNo);  
+//    } 
 	public List<Overtime> selectOvertimeCheck()
 	{  
         return overtimeDao.selectOvertimeCheck();  

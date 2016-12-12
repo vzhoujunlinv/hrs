@@ -32,7 +32,7 @@ $(function(){
                     data: JSON.stringify(modifyData),
                     success: function (data) {
                         if (data.status == 12) {
-                            
+                            alert("申请加班成功！");
                         }
                     },
                     error: function () {

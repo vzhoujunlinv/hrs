@@ -55,7 +55,7 @@ $(function(){
                             oApproveAdvice:$("#oApproveAdvice").val()
 
                      }; 
-                     //console.log(modifyData);               
+                     console.log(modifyData);               
                     $.ajax({
                         type: "POST",
                         contentType:"application/json",

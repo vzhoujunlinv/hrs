@@ -24,6 +24,7 @@ $(function(){
                      sessionStorage.password = message.ePwd;
                      sessionStorage.Id = message.eId;
                      sessionStorage.rankNumber = message.role;
+                     sessionStorage.eNo = message.eNo;
                      location.href = window.prePath +"index.html"
                 }
                 if(data.status== 1){
@@ -32,6 +33,7 @@ $(function(){
                      sessionStorage.password = message.ePwd;
                      sessionStorage.Id = message.eId;
                      sessionStorage.rankNumber = message.role;
+                     sessionStorage.eNo = message.eNo;
                     location.href = window.prePath +"index.html"
                 }
                 if(data.status== 2){
@@ -40,6 +42,7 @@ $(function(){
                      sessionStorage.password = message.ePwd;
                      sessionStorage.Id = message.eId;
                      sessionStorage.rankNumber = message.role;
+                     sessionStorage.eNo = message.eNo;
                     location.href = window.prePath +"index.html"
                 }
                 

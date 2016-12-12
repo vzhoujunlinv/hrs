@@ -45,7 +45,40 @@ public class LeaveController {
 	 */
 	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/LeaveCheckDetail.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Object LeaveCheckDetail(HttpServletRequest request,@RequestParam String lId) 
+	public Object LeaveCheckDetail(HttpServletRequest request,@RequestParam int lId) 
+	{
+		int status = Status.ACTION_SUCCESS;
+		
+		Leave leaves=new Leave();
+		leaves = leaveMapper.selectLeaveCheckDetail(lId);
+
+		return new Response(status, leaves);
+	}
+	/**
+	 * 查询审批状态
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/LeaveState.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Object LeaveState(HttpServletRequest request,@RequestParam String lNo) 
+	{
+		int status = Status.ACTION_SUCCESS;
+		
+		List<Leave> leaves;
+		leaves = leaveMapper.selectLeaveState(lNo);
+
+		return new Response(status, leaves);
+	}
+	/**
+	 * 审批状态详情
+	 * @param request
+	 * @param lId
+	 * @return
+	 */
+	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/LeaveStateDetail.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Object LeaveStateDetail(HttpServletRequest request,@RequestParam int lId) 
 	{
 		int status = Status.ACTION_SUCCESS;
 		
@@ -54,24 +87,6 @@ public class LeaveController {
 
 		return new Response(status, leaves);
 	}
-		/**
-		 * 查询请假审核状态
-		 * @param request
-		 * @param lId
-		 * @return
-		 */
-		@RequestMapping(value = ACTION_BASE_URL_HEADER + "/LeaveStatus.do", method = RequestMethod.POST)
-		@ResponseBody
-		public Object LeaveStatus(HttpServletRequest request,@RequestParam String lId) 
-		{
-			int status = Status.ACTION_SUCCESS;
-			
-			Leave leaves=new Leave();
-			leaves = leaveMapper.selectLeaveState(lId);
-
-			return new Response(status, leaves);
-		}
-		
 		/**
 		 * 请假申请
 		 * @param request
@@ -127,7 +142,7 @@ public class LeaveController {
 		 */
 		@RequestMapping(value = ACTION_BASE_URL_HEADER + "/LeaveApproveDetail.do", method = RequestMethod.POST)
 		@ResponseBody
-		public Object LeaveApproveDetail(HttpServletRequest request,@RequestParam String lId) 
+		public Object LeaveApproveDetail(HttpServletRequest request,@RequestParam int lId) 
 		{
 			int status = Status.ACTION_SUCCESS;
 			

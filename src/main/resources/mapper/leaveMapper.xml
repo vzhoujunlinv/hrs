@@ -18,25 +18,28 @@
 		<result column="lApprover" property="lApprover" jdbcType="VARCHAR" />
 	</resultMap>
 	<!-- 查询请假审核状态-->
-	<select id="selectLeaveState" parameterType="int" resultMap="LeaveResultMap">
-		SELECT * FROM `leave` WHERE lId = #{lId}
+	<select id="selectLeaveState" parameterType="String" resultMap="LeaveResultMap">
+		SELECT lId,lNo,lName,lStartTime,lEndTime,lApproveState,lApprover,lApproveTime FROM `leave` WHERE lNo = #{lNo}
+	</select>
+	<!-- 查询查看详情 -->
+	<select id="selectLeaveStateDetail" parameterType="int" resultMap="LeaveResultMap">
+		SELECT lReason,lApproveAdvice FROM `leave` WHERE lId = #{lId}
 	</select>
 	<!-- 请假核实 -->
 	<select id="selectLeaveCheck" resultMap="LeaveResultMap">
 		SELECT lId,lNo,lName,lStartTime,lEndTime,lApproveState,lApprover,lApproveTime FROM `leave`	
 	</select>
 	<!-- 核实查看详情 -->
-	<select id="selectLeaveStateDetail" parameterType="int" resultMap="LeaveResultMap">
+	<select id="selectLeaveCheckDetail" parameterType="int" resultMap="LeaveResultMap">
 		SELECT lReason,lApproveAdvice FROM `leave` WHERE lId = #{lId}
 	</select>
 	<!-- 请假申请 -->
 	<insert id="saveLeaveApply" parameterType="com.zhou.model.Leave">
-		insert into `leave`(lNo,lName,lStartTime,lEndTime,lReason,lApplyTime) 
-			values(#{lNo},#{lName},#{lStartTime},#{lEndTime},#{lReason},#{lApplyTime})  
+		insert into `leave` (lNo,lName,lStartTime,lEndTime,lReason,lApplyTime) values(#{lNo},#{lName},#{lStartTime},#{lEndTime},#{lReason},#{lApplyTime})
 	</insert>
 	<!-- 请假审批 -->
 	<update id="saveLeaveApprove" parameterType="com.zhou.model.Leave">
-		update `leave` set lApproveTime=#{lApproveTime},lApprovePass=#{lApprovePass},lApproveState=#{lApproveState},lApproveAdvice=#{lApproveAdvice},lApprover=#{lApprover} where lId=#{lId}  
+		update `leave` set lApproveTime=#{lApproveTime},lApprovePass=#{lApprovePass},lApproveState=#{lApproveState},lApproveAdvice=#{lApproveAdvice},lApprover=#{lApprover} where lId=#{lId}
 	</update>
 	<!-- 请假审批显示列表 -->
 	<select id="selectLeaveApproveList" resultMap="LeaveResultMap">

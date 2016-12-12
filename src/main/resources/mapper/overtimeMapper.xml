@@ -17,9 +17,13 @@
 		<result column="oApproveAdvice" property="oApproveAdvice" jdbcType="INTEGER" />
 		<result column="oApprover" property="oApprover" jdbcType="VARCHAR" />
 	</resultMap>
-	<!-- 查询加班审核状态-->
-	<select id="selectOvertimeState" parameterType="int" resultMap="OvertimeResultMap">
-		SELECT * FROM overtime WHERE oId = #{oId}
+	<!-- 查看查询状态 -->
+	<select id="selectOvertimeState" parameterType="String" resultMap="OvertimeResultMap">
+		SELECT oId,oNo,oName,oStartTime,oEndTime,oApproveState,oApprover,oApproveTime FROM overtime	where oNo=#{oNo}
+	</select>
+	<!-- 查看查询详情-->
+	<select id="selectOvertimeStateDetail" parameterType="int" resultMap="OvertimeResultMap">
+		SELECT oReason,oApproveAdvice FROM overtime WHERE oId = #{oId}
 	</select>
 	<!-- 加班核实 -->
 	<select id="selectOvertimeCheck" resultMap="OvertimeResultMap">
@@ -31,12 +35,11 @@
 	</select>
 	<!-- 加班申请 -->
 	<insert id="saveOvertimeApply" parameterType="com.zhou.model.Overtime">
-		insert into overtime (oNo,oName,oStartTime,oEndTime,oReason,oApplyTime) 
-			values(#{oNo},#{oName},#{oStartTime},#{oEndTime},#{oReason},#{oApplyTime})  
+		insert into overtime (oNo,oName,oStartTime,oEndTime,oReason,oApplyTime) values (#{oNo},#{oName},#{oStartTime},#{oEndTime},#{oReason},#{oApplyTime})
 	</insert>
 	<!-- 加班审批 -->
 	<update id="saveOvertimeApprove" parameterType="com.zhou.model.Overtime">
-		update overtime set oApproveTime=#{oApproveTime},oApprovePass=#{oApprovePass},oApproveState=#{oApproveState},oApproveAdvice=#{oApproveAdvice},oApprover=#{oApprover} where oId=#{oId}  
+		update overtime set oApproveTime=#{oApproveTime},oApprovePass=#{oApprovePass},oApproveState=#{oApproveState},oApproveAdvice=#{oApproveAdvice},oApprover=#{oApprover} where oId=#{oId}
 	</update>
 	<!-- 加班审批列表 -->
 	<select id="selectOvertimeApproveList" resultMap="OvertimeResultMap">

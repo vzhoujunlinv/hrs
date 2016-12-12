@@ -6,8 +6,9 @@ HRS.userRank = sessionStorage.userRank;//字符串
 HRS.rankNumber = sessionStorage.rankNumber;//等级数字
 HRS.loginName =sessionStorage.loginName;
 HRS.password =sessionStorage.password;
+HRS.userNo =sessionStorage.eNo;
 
-console.log(HRS.loginName);
+//console.log(HRS.loginName);
 console.log(window.location.pathname);
 //权限管理，当未登录时，跳转到登陆界面
 if(HRS.loginName == null && window.location.pathname != "/hrs/login.html"){

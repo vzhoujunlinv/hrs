@@ -53,23 +53,39 @@ public class OvertimeController {
 
 		return new Response(status,students);
 	}
-		/**
-		 * 查询加班审核状态
-		 * @param request
-		 * @param oId
-		 * @return
-		 */
-		@RequestMapping(value = ACTION_BASE_URL_HEADER + "/OvertimeStatus.do", method = RequestMethod.POST)
-		@ResponseBody
-		public Object OvertimeStatus(HttpServletRequest request,@RequestParam int oId) 
-		{
-			int status = Status.ACTION_SUCCESS;
-			
-			Overtime students=new Overtime();
-			students = overtimeMapper.selectOvertimeState(oId);
+	/**
+	 * 查看查询状态
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/OvertimeState.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Object OvertimeState(HttpServletRequest request,@RequestParam String oNo) 
+	{
+		int status = Status.ACTION_SUCCESS;
+		
+		List<Overtime> overtime;
+		overtime = overtimeMapper.selectOvertimeState(oNo);
 
-			return new Response(status, students);
-		}
+		return new Response(status, overtime);
+	}
+	/**
+	 * 查看查询详情
+	 * @param request
+	 * @param oId
+	 * @return
+	 */
+	@RequestMapping(value = ACTION_BASE_URL_HEADER + "/OvertimeStateDetail.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Object OvertimeStateDetail(HttpServletRequest request,@RequestParam int oId) 
+	{
+		int status = Status.ACTION_SUCCESS;
+		
+		Overtime students=new Overtime();
+		students = overtimeMapper.selectOvertimeStateDetail(oId);
+
+		return new Response(status,students);
+	}
 		
 		/**
 		 * 加班申请
