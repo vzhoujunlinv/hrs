@@ -42,6 +42,10 @@
 	<select id="selectLeaveApproveList" resultMap="LeaveResultMap">
 		SELECT lId,lNo,lName,lStartTime,lEndTime FROM `leave`	
 	</select>
+	<!-- 根据部门请假审批显示列表 -->
+	<select id="selectLeaveApproveListByDep" parameterType="String" resultMap="LeaveResultMap">
+		SELECT lId,lNo,lName,lStartTime,lEndTime FROM `leave` join employee on `leave`.lNo=employee.eNo where employee.eDepartment=#{eDepartment}   
+	</select>
 	<!-- 审批查看详情 -->
 	<select id="selectLeaveApproveDetail" parameterType="int" resultMap="LeaveResultMap">
 		SELECT lReason FROM `leave` WHERE lId = #{lId}

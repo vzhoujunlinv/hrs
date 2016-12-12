@@ -120,6 +120,22 @@ public class LeaveController {
 			return new Response(status, leaves);
 		}
 		/**
+		 * 根据部门请假审批列表
+		 * @param request
+		 * @return
+		 */
+		@RequestMapping(value = ACTION_BASE_URL_HEADER + "/LeaveApproveListByDep.do", method = RequestMethod.POST)
+		@ResponseBody
+		public Object LeaveApproveListByDep(HttpServletRequest request,@RequestParam String eDepartment) 
+		{
+			int status = Status.ACTION_SUCCESS;
+			
+			List<Leave> leaves;
+			leaves = leaveMapper.selectLeaveApproveListByDep(eDepartment);
+
+			return new Response(status, leaves);
+		}
+		/**
 		 * 审批查看详情
 		 * @param request
 		 * @param lId

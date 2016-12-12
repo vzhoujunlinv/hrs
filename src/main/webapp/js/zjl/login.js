@@ -18,32 +18,35 @@ $(function(){
             success:function(data){
                 var message = eval(data.body);
 
-                if(data.status == 0){
-                     sessionStorage.userRank = "老大";// 用户身份
+                if(message.eTitle == "总经理"){
+                     sessionStorage.userRank = "总经理";// 用户身份
                      sessionStorage.loginName = message.eName;
                      sessionStorage.password = message.ePwd;
                      sessionStorage.Id = message.eId;
                      sessionStorage.rankNumber = message.role;
                      sessionStorage.department = message.eDepartment;
+                     sessionStorage.eNo = message.eNo;
                      location.href = window.prePath +"index.html"
                 }
-                if(data.status== 1){
-                    sessionStorage.userRank = "管理员";// 用户身份
+                if(message.eTitle == "经理"){
+                    sessionStorage.userRank = "经理";// 用户身份
                     sessionStorage.loginName = message.eName;
                      sessionStorage.password = message.ePwd;
                      sessionStorage.Id = message.eId;
                      sessionStorage.rankNumber = message.role;
                      sessionStorage.department = message.eDepartment;
+                     sessionStorage.eNo = message.eNo;
                     location.href = window.prePath +"index.html"
                 }
-                if(data.status== 2){
-                    sessionStorage.userRank = "普通员工";// 用户身份
+                if(message.eTitle == "员工"){
+                    sessionStorage.userRank = "员工";// 用户身份
                     sessionStorage.loginName = message.eName;
                      sessionStorage.password = message.ePwd;
                      sessionStorage.Id = message.eId;
                      sessionStorage.rankNumber = message.role;
                     sessionStorage.department = message.eDepartment;
-                    location.href = window.prePath +"index.html"
+                    sessionStorage.eNo = message.eNo;
+                    location.href = window.prePath +"checkStatus.html"
                 }
                 
                 if(data.status == 16){

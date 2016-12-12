@@ -42,6 +42,10 @@
 	<select id="selectOvertimeApproveList" resultMap="OvertimeResultMap">
 		SELECT oId,oNo,oName,oStartTime,oEndTime FROM overtime	
 	</select>
+	<!-- 根据部门显示加班审批列表 -->
+	<select id="selectOvertimeApproveListByDep" parameterType="String" resultMap="OvertimeResultMap">
+		SELECT oId,oNo,oName,oStartTime,oEndTime FROM overtime join employee on overtime.oNo=employee.eNo where employee.eDepartment=#{eDepartment} 
+	</select>
 	<!-- 审批查看详情-->
 	<select id="selectOvertimeApproveDetail" parameterType="int" resultMap="OvertimeResultMap">
 		SELECT oReason FROM overtime WHERE oId = #{oId}

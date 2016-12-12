@@ -15,6 +15,8 @@ public interface OvertimeDao {
     void saveOvertimeApprove(Overtime overtime);
     //加班审批列表
     List<Overtime> selectOvertimeApproveList();
+    //根据部门显示加班审批列表
+    List<Overtime> selectOvertimeApproveListByDep(String eDepartment);
     //加班审批查看详情
     public Overtime selectOvertimeApproveDetail(int oId);
     //加班申请

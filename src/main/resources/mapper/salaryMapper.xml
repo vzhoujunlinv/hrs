@@ -77,8 +77,22 @@
                       ,sDate
                       ,sBeizhu
         FROM salary join employee on salary.sNo=employee.eNo         
-        where  employee.eNo like '%${value}%'
-
+        where  employee.eNo like '%${value}%'              
+	</select>
+	
+	<!-- 根据部门得到薪资信息列表 -->
+	<select id="GetSalaryByDep" parameterType="com.zhou.model.Employee" resultMap="SalaryResultMap">
+		SELECT salary.sNo
+                      ,salary.sName
+                      ,employee.eDepartment
+                      ,employee.eTitle
+                      ,sDate
+                      ,sBasic
+                      ,sReal
+                      ,sDate
+                      ,sBeizhu
+        FROM salary join employee on salary.sNo=employee.eNo         
+        where employee.eDepartment=#{eDepartment}              
 	</select>
 	
 	<!--获取一条薪资的细节-->

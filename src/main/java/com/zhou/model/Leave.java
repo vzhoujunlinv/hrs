@@ -7,10 +7,10 @@ public class Leave {
     private String lNo;	  
     private String lName;
     private String lReason;
-    private Date lStartTime;
-    private Date lEndTime;
-    private Date lApplyTime;  
-    private Date lApproveTime;
+    private String lStartTime;
+    private String lEndTime;
+    private String lApplyTime;  
+    private String lApproveTime;
     private Integer lApproveState;
     private String lApproveAdvice; 
     private Integer lApprovePass; 
@@ -39,10 +39,10 @@ public class Leave {
 	public void setlReason(String lReason) {
 		this.lReason = lReason;
 	}
-	public Date getlStartTime() {
+	public String getlStartTime() {
 		return lStartTime;
 	}
-	public void setlStartTime(Date lStartTime) {
+	public void setlStartTime(String lStartTime) {
 		this.lStartTime = lStartTime;
 	}
 	public Date getlEndTime() {

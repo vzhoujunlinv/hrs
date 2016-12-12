@@ -118,6 +118,22 @@ public class OvertimeController {
 			return new Response(status, overtime);
 		}
 		/**
+		 * 根据部门显示加班审批列表 
+		 * @param request
+		 * @return
+		 */
+		@RequestMapping(value = ACTION_BASE_URL_HEADER + "/OvertimeApproveListByDep.do", method = RequestMethod.POST)
+		@ResponseBody
+		public Object OvertimeApproveListByDep(HttpServletRequest request,@RequestParam String eDepartment) 
+		{
+			int status = Status.ACTION_SUCCESS;
+			
+			List<Overtime> overtime;
+			overtime = overtimeMapper.selectOvertimeApproveListByDep(eDepartment);
+
+			return new Response(status, overtime);
+		}
+		/**
 		 * 审批查看详情
 		 * @param request
 		 * @param oId

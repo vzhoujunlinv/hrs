@@ -6,7 +6,8 @@ HRS.userRank = sessionStorage.userRank;//字符串
 HRS.rankNumber = sessionStorage.rankNumber;//等级数字
 HRS.loginName =sessionStorage.loginName;
 HRS.password =sessionStorage.password;
-// HRS.dep = sessionStorage.
+HRS.dep = sessionStorage.department;
+HRS.userNo = sessionStorage.eNo;
 
 // console.log(HRS.loginName);
 // console.log(window.location.pathname);
@@ -15,10 +16,84 @@ HRS.password =sessionStorage.password;
 //     location.href = "login.html";
 // }
 
-// //登录后的标题栏显示
-// $(".userName").html(HRS.loginName);
-// $(".userRank").html(HRS.userRank);
+//登录后的标题栏显示
+$(".userName").html(HRS.loginName);
+$(".userRank").html(HRS.userRank);
 
+if(HRS.userRank == "员工" && HRS.dep != "人事部"){
+    $(".navbar-static-side .nav a").each(function(){
+        url=$(this).attr('href'); 
+        txt=$(this).html();
+        // console.log(url);
+        if (url == "index.html") {
+            $(this).hide();
+        }
+        if (url == "checkLeave.html") {
+            $(this).hide();
+        }
+        if (url == "leaveJudge.html") {
+            $(this).hide();
+        }
+        if (url == "moreJobCheck.html") {
+            $(this).hide();
+        }
+        if (url == "moreJobJudge.html") {
+            $(this).hide();
+        }
+        // if (url == "salaryManage.html") {
+        //     $(this).hide();
+        // }
+        if (url == "apartmentManage.html") {
+            $(this).hide();
+        }
+        if (url == "jobLevel.html") {
+            $(this).hide();
+        }
+        if (url == "attendManage.html") {
+            $(this).hide();
+        }
+
+    }); 
+}else if(HRS.userRank == "员工" && HRS.dep == "人事部"){
+    $(".navbar-static-side .nav a").each(function(){
+        url=$(this).attr('href'); 
+        txt=$(this).html();
+        // console.log(url);
+        
+        if (url == "leaveJudge.html") {
+            $(this).hide();
+        }
+        if (url == "moreJobJudge.html") {
+            $(this).hide();
+        }
+        if (url == "attendManage.html") {
+            $(this).hide();
+        }
+
+    }); 
+}else if(HRS.userRank == "经理"){
+     $(".navbar-static-side .nav a").each(function(){
+        url=$(this).attr('href'); 
+        txt=$(this).html();
+        // console.log(url);
+        if (url == "checkLeave.html") {
+            $(this).hide();
+        }
+        if (url == "moreJobCheck.html") {
+            $(this).hide();
+        }
+        if (url == "apartmentManage.html") {
+            $(this).hide();
+        }
+        if (url == "jobLevel.html") {
+            $(this).hide();
+        }
+        if (url == "attendManage.html") {
+            $(this).hide();
+        }
+
+    }); 
+}
 
 
 //退出登录

@@ -48,7 +48,7 @@ public class SalaryController {
 	     */  
 		 @RequestMapping(value = ACTION_BASE_URL_HEADER+"/GetSalaryDetail.do",method = RequestMethod.GET)
 		    @ResponseBody
-		    public Object getSalaryDetail(@RequestParam String eNo,HttpServletRequest request){
+		    public Object getSalaryDetail(@RequestParam String eNo, HttpServletRequest request){
 		        int status = Status.ACTION_SUCCESS;
 		        List<SalaryDetail> salarydets;
 		        salarydets = SalaryService.GetSalaryDetail(eNo);
@@ -57,7 +57,20 @@ public class SalaryController {
 	            }
 		        return new Response(status,salarydets);
 
-		    }		 
+		    }
+		 //根据部门薪资列表
+		 @RequestMapping(value = ACTION_BASE_URL_HEADER+"/GetSalaryByDep.do",method = RequestMethod.POST)
+		    @ResponseBody
+		    public Object getSalaryByDep(@RequestBody Employee employee, HttpServletRequest request){
+		        int status = Status.ACTION_SUCCESS;
+		        List<Salary> salarys;
+		        salarys = SalaryService.GetSalaryByDep(employee);
+		        if (salarys==null){
+	                status = Status.NO_RECORDS;
+	            }
+		        return new Response(status,salarys);
+
+		    }
 
 		 
 		 @RequestMapping(value = ACTION_BASE_URL_HEADER+"/ComputeSal.do",method = RequestMethod.GET)
