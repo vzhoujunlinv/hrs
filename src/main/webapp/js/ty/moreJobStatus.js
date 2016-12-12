@@ -31,27 +31,47 @@ $(function(){
            
             }
 
-            $(".look").click(function(){
+            // $(".look").click(function(){
                 
-                var lId=$(this).parents("td").parents("tr").children(".oId").html();
-                console.log(lId);
-                $.ajax({   
-                    type: "POST",
-                    dataType: "json",
-                    url: window.prePath + "overtime/OvertimeStateDetail.do?oId="+oId,
-                    success:function(data){
-                        if(data.status == 12){
+            //     var oId=$(this).parents("td").parents("tr").children(".oId").html();
+            //     console.log(lId);
+            //     $.ajax({   
+            //         type: "POST",
+            //         dataType: "json",
+            //         url: window.prePath + "overtime/OvertimeStateDetail.do?oId=" + oId,
+            //         success:function(data){
+            //             if(data.status == 12){
 
-                        var message = eval(data.body)
-                        //var message1=message[0];
+            //             var message = eval(data.body)
+            //             //var message1=message[0];
 
-                        $("#oReason").html(message.oReason);
-                        $("#oApproveAdvice").html(message.oApproveAdvice);
+            //             $("#oReason").html(message.oReason);
+            //             $("#oApproveAdvice").html(message.oApproveAdvice);
 
-                         }
-                    } 
+            //              }
+            //         } 
+            //     })
+            // })
+
+
+            $(".look").click(function(){
+                    //console.log("hahah");
+                    var oId=$(this).parents("td").parents("tr").children(".oId").html();
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url:window.prePath+"overtime/OvertimeStateDetail.do?oId="+oId,
+                        success:function(data){
+                            if(data.status == 12){
+                                var message = eval(data.body);
+                                $("#oReason").html(message.oReason);
+                                 $("#oApproveAdvice").html(message.oApproveAdvice);
+
+        
+                            }
+                        }
+                    })                   
                 })
-            })
 
 
         },

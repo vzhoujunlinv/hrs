@@ -43,7 +43,7 @@
 	</update>
 	<!-- 加班审批列表 -->
 	<select id="selectOvertimeApproveList" resultMap="OvertimeResultMap">
-		SELECT oId,oNo,oName,oStartTime,oEndTime FROM overtime	
+		SELECT oId,oNo,oName,oStartTime,oEndTime FROM overtime
 	</select>
 	<!-- 审批查看详情-->
 	<select id="selectOvertimeApproveDetail" parameterType="int" resultMap="OvertimeResultMap">
