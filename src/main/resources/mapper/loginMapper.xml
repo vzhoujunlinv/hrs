@@ -22,7 +22,7 @@
 	</resultMap>
 	
 	<select id="loginEmployee" resultMap="BaseResultMap" parameterType="String">
-		SELECT * FROM employee WHERE eName = #{eName,jdbcType=VARCHAR}
+		SELECT * FROM employee WHERE eNo = #{eNo,jdbcType=VARCHAR}
 	</select>
 	
 	<select id="showOneEmp" resultMap="BaseResultMap" parameterType="String">

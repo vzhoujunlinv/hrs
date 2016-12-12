@@ -9,7 +9,7 @@ public interface LoginDao {
 	 * @return Employee
 	 * 登录
 	 */
-	Employee loginEmployee(String eName);
+	Employee loginEmployee(String eNo);
 
 	Employee showOneEmp(int id);
 }

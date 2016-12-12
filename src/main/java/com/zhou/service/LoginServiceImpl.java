@@ -15,12 +15,12 @@ public class LoginServiceImpl implements LoginService{
     private LoginDao loginDao;  
 	
 	@Override
-	public Employee loginEmployee(String eName, String ePwd)
+	public Employee loginEmployee(String eNo, String ePwd)
 			throws NotExistException, PasswordNotMatchException {
 		// TODO Auto-generated method stub
-		Employee emp = loginDao.loginEmployee(eName);
+		Employee emp = loginDao.loginEmployee(eNo);
 		if(emp == null){
-            throw new NotExistException("Employee:"+eName+" not exists");
+            throw new NotExistException("Employee:"+eNo+" not exists");
         }else{
             String encryptPassword = emp.getePwd();
             if(!encryptPassword.equals(ePwd)){

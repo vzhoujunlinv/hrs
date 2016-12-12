@@ -12,7 +12,7 @@ $(function(){
         }
 
         $.ajax({
-            url:window.prePath + "employee/login.do?eName="+loginName +"&password="+ passWord,
+            url:window.prePath + "employee/login.do?eNo="+loginName +"&password="+ passWord,
             type:"POST",
             contentType:"application/json",
             success:function(data){

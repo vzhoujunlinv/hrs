@@ -1,86 +1,74 @@
-/*
-Navicat MySQL Data Transfer
+-- MySQL dump 10.13  Distrib 5.7.9, for osx10.9 (x86_64)
+--
+-- Host: 127.0.0.1    Database: hrs
+-- ------------------------------------------------------
+-- Server version	5.7.12
 
-Source Server         : localhost_3306
-Source Server Version : 50096
-Source Host           : localhost:3306
-Source Database       : hrs
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-Target Server Type    : MYSQL
-Target Server Version : 50096
-File Encoding         : 65001
+--
+-- Table structure for table `department`
+--
 
-Date: 2016-11-29 09:59:37
-*/
-
-SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for `attendance`
--- ----------------------------
-DROP TABLE IF EXISTS `attendance`;
-CREATE TABLE `attendance` (
-  `aId` int(4) NOT NULL auto_increment,
-  `aNo` varchar(10) NOT NULL,
-  `aName` varchar(20) NOT NULL,
-  `aTime` datetime NOT NULL,
-  `aState` int(4) NOT NULL,
-  `aDate` datetime NOT NULL,
-  `aMonthNo` int(4) default NULL,
-  PRIMARY KEY  (`aId`),
-  KEY `aNo` (`aNo`,`aName`),
-  KEY `attendance_ibfk_2` (`aName`,`aNo`),
-  CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`aName`, `aNo`) REFERENCES `employee` (`eName`, `eNo`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of attendance
--- ----------------------------
-INSERT INTO `attendance` VALUES ('1', '2014030', 'BigZhou', '2016-09-01 20:18:40', '1', '2016-11-01 20:18:47', '23');
-
--- ----------------------------
--- Table structure for `department`
--- ----------------------------
 DROP TABLE IF EXISTS `department`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `department` (
-  `dId` int(4) NOT NULL auto_increment,
+  `dId` int(4) NOT NULL,
   `dName` varchar(20) NOT NULL,
   `dState` int(10) NOT NULL,
   `dSuperior` varchar(20) NOT NULL,
-  PRIMARY KEY  (`dId`),
+  PRIMARY KEY (`dId`),
   KEY `dName` (`dName`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of department
--- ----------------------------
-INSERT INTO `department` VALUES ('1', 'Leader', '1', 'Leader');
-INSERT INTO `department` VALUES ('2', 'Tech', '1', 'Leader');
-INSERT INTO `department` VALUES ('3', 'Hr', '1', 'Leader');
+--
+-- Dumping data for table `department`
+--
 
--- ----------------------------
--- Table structure for `employee`
--- ----------------------------
+LOCK TABLES `department` WRITE;
+/*!40000 ALTER TABLE `department` DISABLE KEYS */;
+INSERT INTO `department` VALUES (4,'/',1,''),(5,'人事部',1,'/'),(6,'策划部',1,'/'),(7,'后勤部',1,'');
+/*!40000 ALTER TABLE `department` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `employee`
+--
+
 DROP TABLE IF EXISTS `employee`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `employee` (
-  `eId` int(4) NOT NULL auto_increment,
+  `eId` int(4) NOT NULL AUTO_INCREMENT,
   `eNo` varchar(10) NOT NULL,
   `ePwd` varchar(20) NOT NULL,
   `eName` varchar(20) NOT NULL,
   `eSex` int(4) NOT NULL,
-  `sBasicSalary` int(5) NOT NULL,
-  `eAddress` varchar(30) default NULL,
+  `eBasicSalary` int(5) NOT NULL,
+  `eAddress` varchar(30) DEFAULT NULL,
   `eDepartment` varchar(20) NOT NULL,
   `eTitle` varchar(20) NOT NULL,
-  `eRecord` int(2) default NULL,
-  `eJointime` datetime default NULL,
-  `eIntroduction` varchar(200) default NULL,
+  `eRecord` int(2) DEFAULT NULL,
+  `eJointime` datetime DEFAULT NULL,
+  `eIntroduction` varchar(200) DEFAULT NULL,
   `eState` int(2) NOT NULL,
   `eTele` varchar(20) NOT NULL,
   `eMail` varchar(30) NOT NULL,
-  `eBeiZhu` varchar(30) default NULL,
-  `role` int(2) NOT NULL default '1',
-  PRIMARY KEY  (`eId`),
+  `eBeiZhu` varchar(30) DEFAULT NULL,
+  `role` int(2) NOT NULL DEFAULT '1',
+  `dId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`eId`),
   KEY `eDepartment` (`eDepartment`),
   KEY `eTitle` (`eTitle`),
   KEY `eNo` (`eNo`),
@@ -89,97 +77,125 @@ CREATE TABLE `employee` (
   KEY `eName_2` (`eName`,`eNo`),
   CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`eDepartment`) REFERENCES `department` (`dName`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`eTitle`) REFERENCES `position` (`pName`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of employee
--- ----------------------------
-INSERT INTO `employee` VALUES ('1', '2014030', '123', 'BigZhou', '0','10000', 'Chengdu', 'Leader', 'Cleaner', '3', '2014-09-01 20:09:33', 'beautiful,smart,strong the most', '1', '18588888888', '1234@qq.com', null, '1');
-INSERT INTO `employee` VALUES ('2', '2014029', '123', 'TanYao', '0', '1000','Chengdu', 'Hr', 'Dean', '3', '2016-11-02 20:14:34', 'fashion', '1', '17788888888', '4321@qq.com', 'hehe', '1');
+--
+-- Dumping data for table `employee`
+--
 
--- ----------------------------
--- Table structure for `leave`
--- ----------------------------
+LOCK TABLES `employee` WRITE;
+/*!40000 ALTER TABLE `employee` DISABLE KEYS */;
+INSERT INTO `employee` VALUES (4,'2014029','123','谭尧尧',0,3000,'131','人事部','员工',NULL,'2000-01-01 00:00:00',NULL,1,'12344444444','1234@gmail.com',NULL,1,5),(5,'2014030','123','周琳琳',0,5000,'131','/','总经理',NULL,'1999-01-01 00:00:00',NULL,1,'12355556666','12334@gmail.com',NULL,1,4),(6,'2014028','123','史可可',0,3000,'131','策划部','员工',NULL,'2000-01-01 00:00:00',NULL,1,'1233334444','33333@gmail.com',NULL,1,6),(7,'2014024','123','戴丫丫',0,5000,'131','后勤部','经理',NULL,'2000-01-01 00:00:00',NULL,1,'1235555666','12345@gmail.com',NULL,1,7);
+/*!40000 ALTER TABLE `employee` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `leave`
+--
+
 DROP TABLE IF EXISTS `leave`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `leave` (
-  `lId` int(4) NOT NULL auto_increment,
-  `lNo` varchar(10) NOT NULL,
-  `lName` varchar(20) NOT NULL,
-  `lReason` varchar(200) NOT NULL,
-  `lStartTime` datetime NOT NULL,
-  `lEndTime` datetime NOT NULL,
-  `lApplyTime` datetime NOT NULL,
-  `lApproveTime` datetime NOT NULL,
-  `lApproveState` int(2) NOT NULL,
-  `lApproveAdvice` varchar(200) NOT NULL,
-  `lApprovePass` int(2) NOT NULL,
-  `lApprover` varchar(20) NOT NULL,
-  PRIMARY KEY  (`lId`),
+  `lId` int(4) NOT NULL AUTO_INCREMENT,
+  `lNo` varchar(10) DEFAULT NULL,
+  `lName` varchar(20) DEFAULT NULL,
+  `lReason` varchar(200) DEFAULT NULL,
+  `lStartTime` datetime DEFAULT NULL,
+  `lEndTime` datetime DEFAULT NULL,
+  `lApplyTime` datetime DEFAULT NULL,
+  `lApproveTime` datetime DEFAULT NULL,
+  `lApproveState` int(2) DEFAULT NULL,
+  `lApproveAdvice` varchar(200) DEFAULT NULL,
+  `lApprovePass` int(2) DEFAULT NULL,
+  `lApprover` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`lId`),
   KEY `lNo` (`lNo`),
   KEY `lName` (`lName`),
   KEY `lNo_2` (`lNo`,`lName`),
   CONSTRAINT `leave_ibfk_1` FOREIGN KEY (`lNo`, `lName`) REFERENCES `employee` (`eNo`, `eName`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of leave
--- ----------------------------
-INSERT INTO `leave` VALUES ('1', '2014029', 'TanYao', 'eat', '2016-11-07 20:20:25', '2016-11-07 20:59:30', '2016-11-04 20:20:38', '2016-11-05 20:20:42', '1', 'go', '1', 'zhou');
+--
+-- Dumping data for table `leave`
+--
 
--- ----------------------------
--- Table structure for `overtime`
--- ----------------------------
+LOCK TABLES `leave` WRITE;
+/*!40000 ALTER TABLE `leave` DISABLE KEYS */;
+/*!40000 ALTER TABLE `leave` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `overtime`
+--
+
 DROP TABLE IF EXISTS `overtime`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `overtime` (
-  `oId` int(4) NOT NULL auto_increment,
-  `oNo` varchar(10) NOT NULL,
-  `oName` varchar(20) NOT NULL,
-  `oReason` varchar(200) NOT NULL,
-  `oStartTime` datetime NOT NULL,
-  `oEndTime` datetime NOT NULL,
-  `oApplyTime` datetime NOT NULL,
-  `oApproveTime` datetime NOT NULL,
-  `oApproveState` int(2) NOT NULL,
-  `oApproveAdvice` varchar(200) NOT NULL,
-  `oApprovePass` int(2) NOT NULL,
-  `oApprover` varchar(20) NOT NULL,
-  PRIMARY KEY  (`oId`),
+  `oId` int(4) NOT NULL AUTO_INCREMENT,
+  `oNo` varchar(10) DEFAULT NULL,
+  `oName` varchar(20) DEFAULT NULL,
+  `oReason` varchar(200) DEFAULT NULL,
+  `oStartTime` datetime DEFAULT NULL,
+  `oEndTime` datetime DEFAULT NULL,
+  `oApplyTime` datetime DEFAULT NULL,
+  `oApproveTime` datetime DEFAULT NULL,
+  `oApproveState` int(2) DEFAULT NULL,
+  `oApproveAdvice` varchar(200) DEFAULT NULL,
+  `oApprovePass` int(2) DEFAULT NULL,
+  `oApprover` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`oId`),
   KEY `oNo` (`oNo`),
-  KEY `oName` (`oName`),
-  CONSTRAINT `overtime_ibfk_1` FOREIGN KEY (`oNo`) REFERENCES `employee` (`eNo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `overtime_ibfk_2` FOREIGN KEY (`oName`) REFERENCES `employee` (`eName`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `oName` (`oName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of overtime
--- ----------------------------
+--
+-- Dumping data for table `overtime`
+--
 
--- ----------------------------
--- Table structure for `position`
--- ----------------------------
+LOCK TABLES `overtime` WRITE;
+/*!40000 ALTER TABLE `overtime` DISABLE KEYS */;
+/*!40000 ALTER TABLE `overtime` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `position`
+--
+
 DROP TABLE IF EXISTS `position`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `position` (
-  `pId` int(4) NOT NULL auto_increment,
+  `pId` int(4) NOT NULL AUTO_INCREMENT,
   `pName` varchar(20) NOT NULL,
   `pState` int(10) NOT NULL,
-  PRIMARY KEY  (`pId`),
+  PRIMARY KEY (`pId`),
   KEY `pName` (`pName`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of position
--- ----------------------------
-INSERT INTO `position` VALUES ('1', 'Dean', '1');
-INSERT INTO `position` VALUES ('2', 'Cleaner', '1');
-INSERT INTO `position` VALUES ('3', 'Normal', '1');
-INSERT INTO `position` VALUES ('4', 'Dalao', '1');
+--
+-- Dumping data for table `position`
+--
 
--- ----------------------------
--- Table structure for `salary`
--- ----------------------------
+LOCK TABLES `position` WRITE;
+/*!40000 ALTER TABLE `position` DISABLE KEYS */;
+/*!40000 ALTER TABLE `position` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `salary`
+--
+
 DROP TABLE IF EXISTS `salary`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `salary` (
-  `sId` int(4) NOT NULL auto_increment,
+  `sId` int(4) NOT NULL AUTO_INCREMENT,
   `sNo` varchar(10) NOT NULL,
   `sName` varchar(20) NOT NULL,
   `sBasic` int(5) NOT NULL,
@@ -187,34 +203,58 @@ CREATE TABLE `salary` (
   `sOvertimeNo` int(4) NOT NULL,
   `sReal` int(5) NOT NULL,
   `sDate` datetime NOT NULL,
-  `sBeizhu` varchar(30) default NULL,
-  PRIMARY KEY  (`sId`),
+  `sBeizhu` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`sId`),
   KEY `sNo` (`sNo`),
   KEY `sName` (`sName`),
   KEY `sLeaveNo` (`sLeaveNo`),
   KEY `sOvertimeNo` (`sOvertimeNo`),
-  CONSTRAINT `salary_ibfk_1` FOREIGN KEY (`sNo`) REFERENCES `employee` (`eNo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `salary_ibfk_2` FOREIGN KEY (`sName`) REFERENCES `employee` (`eName`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `salary_ibfk_1` FOREIGN KEY (`sNo`) REFERENCES `employee` (`eNo`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of salary
--- ----------------------------
+--
+-- Dumping data for table `salary`
+--
 
--- ----------------------------
--- Table structure for `t_user`
--- ----------------------------
+LOCK TABLES `salary` WRITE;
+/*!40000 ALTER TABLE `salary` DISABLE KEYS */;
+INSERT INTO `salary` VALUES (6,'2014030','Bigzhou',5000,0,0,5000,'2016-12-12 20:12:05',NULL),(8,'2014030','Bigzhou',5000,0,0,5000,'2016-12-12 20:20:58',NULL),(13,'2014030','Bigzhou',5000,0,0,5000,'2016-12-12 20:40:57',NULL),(18,'2014028','史可可',3000,0,0,3000,'2016-12-12 20:50:31',NULL),(19,'2014028','史可可',3000,0,0,3000,'2016-12-12 20:50:38',NULL),(20,'2014028','史可可',3000,0,0,3000,'2016-12-12 20:50:45',NULL),(21,'2014024','戴丫丫',5000,0,0,5000,'2016-12-12 20:50:52',NULL),(22,'2014029','谭尧尧',3000,0,0,3000,'2016-12-12 20:50:57',NULL),(23,'2014029','谭尧尧',3000,0,0,3000,'2016-12-12 20:51:06',NULL);
+/*!40000 ALTER TABLE `salary` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_user`
+--
+
 DROP TABLE IF EXISTS `t_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `t_user` (
-  `USER_ID` int(11) NOT NULL auto_increment,
+  `USER_ID` int(11) NOT NULL AUTO_INCREMENT,
   `USER_NAME` char(30) NOT NULL,
   `USER_PASSWORD` char(10) NOT NULL,
-  PRIMARY KEY  (`USER_ID`),
+  PRIMARY KEY (`USER_ID`),
   KEY `IDX_NAME` (`USER_NAME`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of t_user
--- ----------------------------
-INSERT INTO `t_user` VALUES ('1', 'zhou', '123456');
-INSERT INTO `t_user` VALUES ('2', 'tan', '123456');
+--
+-- Dumping data for table `t_user`
+--
+
+LOCK TABLES `t_user` WRITE;
+/*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2016-12-12 21:03:28

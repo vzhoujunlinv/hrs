@@ -17,8 +17,8 @@ public interface SalaryService {
    
     public List<SalaryDetail> GetSalaryDetail(String eNo);
    
-    public int SetSalary(String eDepartment);  
+    public int SetSalary(int eDepartment);  
     
-    public Salary ComputeSal(String eDepartment);
+    public Salary ComputeSal(int eDepartment);
  
 }
