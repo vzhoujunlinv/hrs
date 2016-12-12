@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.zhou.dao.SalaryDao;
 import com.zhou.model.Salary;
+import com.zhou.model.Employee;
 import com.zhou.model.SalaryDetail;
 
 
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 
 import com.zhou.dao.SalaryDao;
 import com.zhou.model.Salary;
+import com.zhou.model.Employee;
+
 import com.zhou.model.SalaryDetail;
 
 @Service
@@ -26,6 +29,11 @@ public class SalaryServiceImpl implements SalaryService{
 	@Override
 	public List<Salary> GetSalaryList(String eNo) {
 		return SalaryDao.GetSalaryList(eNo);
+	}
+	
+	@Override
+	public List<Salary> GetSalaryByDep(Employee employee) {
+		return SalaryDao.GetSalaryByDep(employee);
 	}
 
 	@Override

@@ -7,10 +7,10 @@ public class Leave {
     private String lNo;	  
     private String lName;
     private String lReason;
-    private Date lStartTime;
-    private Date lEndTime;
-    private Date lApplyTime;  
-    private Date lApproveTime;
+    private String lStartTime;
+    private String lEndTime;
+    private String lApplyTime;  
+    private String lApproveTime;
     private Integer lApproveState;
     private String lApproveAdvice; 
     private Integer lApprovePass; 
@@ -39,30 +39,13 @@ public class Leave {
 	public void setlReason(String lReason) {
 		this.lReason = lReason;
 	}
-	public Date getlStartTime() {
+	public String getlStartTime() {
 		return lStartTime;
 	}
-	public void setlStartTime(Date lStartTime) {
+	public void setlStartTime(String lStartTime) {
 		this.lStartTime = lStartTime;
 	}
-	public Date getlEndTime() {
-		return lEndTime;
-	}
-	public void setlEndTime(Date lEndTime) {
-		this.lEndTime = lEndTime;
-	}
-	public Date getlApplyTime() {
-		return lApplyTime;
-	}
-	public void setlApplyTime(Date lApplyTime) {
-		this.lApplyTime = lApplyTime;
-	}
-	public Date getlApproveTime() {
-		return lApproveTime;
-	}
-	public void setlApproveTime(Date lApproveTime) {
-		this.lApproveTime = lApproveTime;
-	}
+
 	public Integer getlApproveState() {
 		return lApproveState;
 	}
@@ -104,6 +87,24 @@ public class Leave {
 		this.lApprovePass=lApprovePass;
 		this.lApprover=lApprover;
 	}*/
+	public String getlEndTime() {
+		return lEndTime;
+	}
+	public void setlEndTime(String lEndTime) {
+		this.lEndTime = lEndTime;
+	}
+	public String getlApproveTime() {
+		return lApproveTime;
+	}
+	public void setlApproveTime(String lApproveTime) {
+		this.lApproveTime = lApproveTime;
+	}
+	public String getlApplyTime() {
+		return lApplyTime;
+	}
+	public void setlApplyTime(String lApplyTime) {
+		this.lApplyTime = lApplyTime;
+	}
 		
 	
     

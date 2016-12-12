@@ -21,8 +21,7 @@
 	</select>
 	<!-- 由部门查询-->
 	<select id="selectEmpByDep" parameterType="String" resultMap="EmployeeResultMap">
-
-		SELECT * FROM employee WHERE eDepartment=#{eDepartment}
+			SELECT * FROM employee WHERE eDepartment=#{eDepartment}
 	</select>
 	<!-- 查询所有员工 -->
 	<select id="findAllEmp" resultMap="EmployeeResultMap">
@@ -30,8 +29,7 @@
 	</select>
 	<!-- 添加员工 -->
 	<insert id="saveEmp" parameterType="com.zhou.model.Employee" >
-		insert into employee(eNo,eName,eSex,eDepartment,eTitle,eTele,eMail,ePwd) 
-			values (#{eNo},#{eName},#{eSex},#{eDepartment},#{eTitle},#{eTele},#{eMail},#{ePwd})  
+		insert into employee(eNo,eName,eSex,eDepartment,eTitle,eTele,eMail,ePwd) values (#{eNo},#{eName},#{eSex},#{eDepartment},#{eTitle},#{eTele},#{eMail},#{ePwd})
 	</insert>
 	<!-- 修改员工资料 -->
 

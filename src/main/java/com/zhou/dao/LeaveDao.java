@@ -26,6 +26,8 @@ public interface LeaveDao {
     public Leave selectLeaveApproveDetail(int lId);
     //请假审批：显示列表
     List<Leave> selectLeaveApproveList();
+    //请假审批：根据部门显示列表
+    List<Leave> selectLeaveApproveListByDep(String eDepartment);
     //请假申请
     void saveLeaveApply(Leave leave);
 	//public Leave selectLeaveCheckDetail(int lId);

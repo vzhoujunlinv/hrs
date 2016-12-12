@@ -14,6 +14,7 @@ public class OvertimeServiceImpl implements OvertimeService{
     private OvertimeDao overtimeDao;  
 
 
+
 //	public Overtime selectOvertimeState(int oNo)
 //	{  
 //        return overtimeDao.selectOvertimeState(oNo);  
@@ -24,6 +25,8 @@ public class OvertimeServiceImpl implements OvertimeService{
 //	{  
 //        return overtimeDao.selectOvertimeState(oId);  
 //    } 
+
+
 
 	public List<Overtime> selectOvertimeCheck()
 	{  

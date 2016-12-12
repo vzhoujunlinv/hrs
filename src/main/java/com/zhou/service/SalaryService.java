@@ -10,10 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zhou.exception.*;
 import com.zhou.model.Salary;
+import com.zhou.model.Employee;
 import com.zhou.model.SalaryDetail;
 
 public interface SalaryService {
     public List<Salary> GetSalaryList(String eNo);
+    
+    public List<Salary> GetSalaryByDep(Employee employee);
    
     public List<SalaryDetail> GetSalaryDetail(String eNo);
    

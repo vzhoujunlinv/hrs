@@ -3,7 +3,12 @@
  */
 
 $(function(){
-    selAllEmp();
+    if (HRS.userRank == "经理") {
+      selByDep(sessionStorage.department);
+      $(".eDep").attr("disabled","disabled");
+    }else{
+      selAllEmp();
+    }
 
     function selAllEmp(){
         $.ajax({                                   
@@ -185,6 +190,14 @@ $(function(){
 
       var eDepartment=$(this).val();
 
+      if (eDepartment == "全部"){
+        selAllEmp();
+      }else{
+          selByDep(eDepartment);
+      }
+    })
+
+    function selByDep(eDepartment){
       $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -202,7 +215,6 @@ $(function(){
                           + "</button>";
       
             $.each(employees, function (index) {
-              console.log(4444);
                     strHTML += "<tr><td class='eNo'>" + employees[index].eNo + "</td>";
                     strHTML += "<td>" + employees[index].eName+ "</td>";
                     strHTML += "<td class='eDepartment'>" + employees[index].eDepartment + "</td>";
@@ -214,10 +226,10 @@ $(function(){
                     strHTML += deleteBtn + "</td></tr>";
                     
                     $(".dataBody").html(strHTML);
-                    //console.log(111111111);           
-               })
+            })
           }
         }
       })
-    }) 
+    }
+
 })
